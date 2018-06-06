@@ -17,6 +17,7 @@ buildscript {
     'android': [
       'support': [
         'appcompatV7': "com.android.support:appcompat-v7:${versions.support}",
+        'constraintLayout': 'com.android.support.constraint:constraint-layout:1.1.1',
         'design': "com.android.support:design:${versions.support}",
         'test': [
           'runner': 'com.android.support.test:runner:1.0.2',
