@@ -1,0 +1,59 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+  ext.buildConfig = [
+    'compileSdk': 'android-P',
+    'minSdk': 16,
+    'targetSdk': 27,
+  ]
+
+  ext.versions = [
+    'kotlin': '1.2.41',
+    'support': '27.1.1',
+  ]
+
+  ext.deps = [
+    'android': [
+      'support': [
+        'appcompatV7': "com.android.support:appcompat-v7:${versions.support}",
+        'test': [
+          'runner': 'com.android.support.test:runner:1.0.2',
+          'espresso': [
+            'core': 'com.android.support.test.espresso:espresso-core:3.0.2',
+          ],
+        ]
+      ],
+    ],
+    'kotlin': [
+      'stdlib': [
+        'jdk7': "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}",
+      ],
+    ],
+    'junit': 'junit:junit:4.12',
+  ]
+
+  repositories {
+    google()
+    jcenter()
+  }
+
+  dependencies {
+    classpath 'com.android.tools.build:gradle:3.2.0-alpha16'
+    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+
+    // NOTE: Do not place your application dependencies here; they belong
+    // in the individual module build.gradle files
+  }
+}
+
+allprojects {
+  repositories {
+    google()
+    jcenter()
+  }
+}
+
+task clean(type: Delete) {
+  delete rootProject.buildDir
+}
