@@ -2,14 +2,14 @@ package com.ouattararomuald.slider
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.support.constraint.ConstraintLayout
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.ImageView
-import android.widget.LinearLayout
 
-class ImageSlider : LinearLayout {
+class ImageSlider : ConstraintLayout {
 
   private lateinit var viewPager: ViewPager
   private lateinit var indicator: TabLayout
@@ -33,7 +33,7 @@ class ImageSlider : LinearLayout {
 
   constructor(context: Context) : this(context, null)
 
-  constructor(context: Context, attrs: AttributeSet?) : super(context, attrs, 0)
+  constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
   constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int)
       : super(context, attrs, defStyleAttr) {
