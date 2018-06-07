@@ -32,6 +32,8 @@ dependencies {
   implementation deps.android.support.constraintLayout
   implementation deps.android.support.design
 
+  implementation 'com.squareup.picasso:picasso:2.71828'
+
   testImplementation deps.junit
 
   androidTestImplementation deps.android.support.test.runner
