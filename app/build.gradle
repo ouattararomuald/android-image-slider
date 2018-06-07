@@ -28,6 +28,7 @@ dependencies {
   implementation deps.kotlin.stdlib.jdk7
 
   implementation deps.android.support.appcompatV7
+  implementation deps.android.support.constraintLayout
   implementation deps.android.support.design
 
   testImplementation deps.junit
