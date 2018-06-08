@@ -10,11 +10,17 @@ import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
 import android.widget.ImageView
 
+/**
+ * Adapter to create a slider.
+ *
+ * The slider will have the given number of slides.
+ */
 class SliderAdapter(
   private val context: Context,
   /** Number of slides to display. */
   private val slideNumbers: Int,
-  private val callback: Callback
+  /** Image loader callback. */
+  private val imageLoaderCallback: ImageLoaderCallback
 ) : PagerAdapter() {
 
   override fun isViewFromObject(view: View, obj: Any): Boolean = view == obj
@@ -27,7 +33,7 @@ class SliderAdapter(
 
     val slideImageView = view.findViewById(R.id.slide_image) as ImageView
 
-    callback.loadImageFor(slideImageView, position)
+    imageLoaderCallback.loadImageFor(slideImageView, position)
 
     val viewPager = container as ViewPager
     viewPager.addView(view, 0)
