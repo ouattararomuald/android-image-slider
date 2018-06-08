@@ -7,17 +7,11 @@ import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.ImageView
 
 class ImageSlider : ConstraintLayout {
 
-  private lateinit var viewPager: ViewPager
-  private lateinit var indicator: TabLayout
-
-  private val emptyCallback = object : ImageLoaderCallback {
-    override fun loadImageFor(imageView: ImageView, position: Int) {
-    }
-  }
+  private val viewPager: ViewPager
+  private val indicator: TabLayout
 
   private var indicatorSetupWithPager = false
 
