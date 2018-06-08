@@ -5,5 +5,9 @@
     <attr name="sliderBackground" format="reference"/>
     <!-- Reference to a background to be applied to Slider's indicator. -->
     <attr name="indicatorBackground" format="reference"/>
+    <!-- Delay in milliseconds before the first slide change. -->
+    <attr name="initialSlideDelay" format="integer"/>
+    <!-- Time in milliseconds between successive slide changes. -->
+    <attr name="slideTransitionInterval" format="integer"/>
   </declare-styleable>
 </resources>
