@@ -31,8 +31,12 @@ dependencies {
   implementation deps.android.support.appcompatV7
   implementation deps.android.support.constraintLayout
   implementation deps.android.support.design
+  implementation deps.android.support.recyclerview
 
-  implementation 'com.squareup.picasso:picasso:2.71828'
+  implementation deps.groupie.core
+  implementation deps.groupie.kotlinExtensions
+
+  implementation deps.picasso
 
   testImplementation deps.junit
 
