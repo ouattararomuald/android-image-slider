@@ -23,6 +23,10 @@ android {
   }
 }
 
+androidExtensions {
+  experimental = true
+}
+
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation deps.kotlin.stdlib.jdk7
