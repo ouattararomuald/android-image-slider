@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <declare-styleable name="ImageSlider">
+    <!-- Reference to a background to be applied to Slider. -->
+    <attr name="sliderBackground" format="reference"/>
+    <!-- Reference to a background to be applied to Slider's indicator. -->
+    <attr name="indicatorBackground" format="reference"/>
   </declare-styleable>
 </resources>
