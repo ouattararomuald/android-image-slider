@@ -2,6 +2,7 @@ package com.ouattararomuald.slider
 
 import android.content.Context
 import android.content.res.TypedArray
+import android.os.Handler
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewCompat
@@ -9,6 +10,8 @@ import android.support.v4.view.ViewPager
 import android.support.v7.content.res.AppCompatResources
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import java.util.Timer
+import java.util.TimerTask
 
 /**
  *
@@ -17,21 +20,44 @@ import android.view.LayoutInflater
  */
 class ImageSlider : ConstraintLayout {
 
+  companion object {
+    private const val DEFAULT_DELAY = 3000L
+    private const val DEFAULT_PERIOD = 5000L
+  }
+
   private val viewPager: ViewPager
   private val indicator: TabLayout
 
   private var sliderBackgroundResId: Int = 0
   private var indicatorBackgroundResId: Int = 0
+  private var initialSlideDelay: Long = DEFAULT_DELAY
+  private var slideTransitionInterval: Long = DEFAULT_PERIOD
 
   private var indicatorSetupWithPager = false
 
+  private var timer: Timer? = null
+  private val sliderTimer: SliderTimer by lazy { SliderTimer() }
+
+  var pagerTransformer: ViewPager.PageTransformer? = null
+    set(value) {
+      field = value
+      if (value != null) {
+        viewPager.setPageTransformer(true, value)
+      }
+    }
+
   var adapter: SliderAdapter? = null
     set(value) {
+      field = value
+      timer?.cancel()
+
       if (value != null) {
-        field = value
         viewPager.adapter = field
 
         setupIndicatorWithViewPagerIfNecessary()
+
+        timer = Timer()
+        timer?.scheduleAtFixedRate(sliderTimer, initialSlideDelay, slideTransitionInterval)
       }
     }
 
@@ -55,6 +81,12 @@ class ImageSlider : ConstraintLayout {
           R.styleable.ImageSlider_indicatorBackground, 0
       )
       sliderBackgroundResId = getResourceId(R.styleable.ImageSlider_sliderBackground, 0)
+      initialSlideDelay = getInt(
+          R.styleable.ImageSlider_initialSlideDelay, DEFAULT_DELAY.toInt()
+      ).toLong()
+      slideTransitionInterval = getInt(
+          R.styleable.ImageSlider_slideTransitionInterval, DEFAULT_PERIOD.toInt()
+      ).toLong()
     }
 
     if (indicatorBackgroundResId != 0) {
@@ -77,6 +109,21 @@ class ImageSlider : ConstraintLayout {
     if (!indicatorSetupWithPager) {
       indicator.setupWithViewPager(viewPager, true)
       indicatorSetupWithPager = true
+    }
+  }
+
+  private inner class SliderTimer : TimerTask() {
+    override fun run() {
+      adapter?.let {
+        val mainHandler = Handler(context.mainLooper)
+        mainHandler.post {
+          if (viewPager.currentItem < it.slideNumbers - 1) {
+            viewPager.currentItem = viewPager.currentItem + 1
+          } else {
+            viewPager.currentItem = 0
+          }
+        }
+      }
     }
   }
 }

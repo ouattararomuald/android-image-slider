@@ -1,13 +1,11 @@
-@file:JvmName("SliderAdapter")
-
 package com.ouattararomuald.slider
 
 import android.content.Context
 import android.support.v4.view.PagerAdapter
-import android.view.View
-import android.view.ViewGroup
 import android.support.v4.view.ViewPager
 import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 
 /**
@@ -18,7 +16,7 @@ import android.widget.ImageView
 class SliderAdapter(
   private val context: Context,
   /** Number of slides to display. */
-  private val slideNumbers: Int,
+  val slideNumbers: Int,
   /** Image loader callback. */
   private val imageLoaderCallback: ImageLoaderCallback
 ) : PagerAdapter() {
@@ -29,9 +27,9 @@ class SliderAdapter(
 
   override fun instantiateItem(container: ViewGroup, position: Int): Any {
     val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    val view = inflater.inflate(R.layout.slider_item, null)
+    val view = inflater.inflate(R.layout.slider_view, null)
 
-    val slideImageView = view.findViewById(R.id.slide_image) as ImageView
+    val slideImageView = view.findViewById(R.id.image) as ImageView
 
     imageLoaderCallback.loadImageFor(slideImageView, position)
 
