@@ -14,7 +14,7 @@ class ImageSlider : ConstraintLayout {
   private lateinit var viewPager: ViewPager
   private lateinit var indicator: TabLayout
 
-  private val emptyCallback = object : Callback {
+  private val emptyCallback = object : ImageLoaderCallback {
     override fun loadImageFor(imageView: ImageView, position: Int) {
     }
   }
