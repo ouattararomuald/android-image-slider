@@ -39,6 +39,7 @@ buildscript {
       'kotlinExtensions': "com.xwray:groupie-kotlin-android-extensions:${versions.groupie}",
     ],
     'junit': 'junit:junit:4.12',
+    'pageTransformer': 'com.github.miaoyongjun:PageTransformer:1.0',
     'picasso': 'com.squareup.picasso:picasso:2.71828',
   ]
 
@@ -60,6 +61,7 @@ allprojects {
   repositories {
     google()
     jcenter()
+    maven { url 'https://jitpack.io' }
   }
 }
 

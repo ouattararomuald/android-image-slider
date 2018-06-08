@@ -42,6 +42,8 @@ dependencies {
 
   implementation deps.picasso
 
+  implementation deps.pageTransformer
+
   testImplementation deps.junit
 
   androidTestImplementation deps.android.support.test.runner
