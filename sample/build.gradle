@@ -30,7 +30,7 @@ androidExtensions {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation deps.kotlin.stdlib.jdk7
-  implementation project(':library')
+  implementation project(':slider')
 
   implementation deps.android.support.appcompatV7
   implementation deps.android.support.constraintLayout
