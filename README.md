@@ -7,8 +7,7 @@ needs.
 
 Create a simple slider with the following code:
 
-*activity_main.xml*
-
+**activity_main.xml**
 ```xml
 <com.ouattararomuald.slider.ImageSlider
       android:id="@+id/image_slider"
@@ -17,8 +16,7 @@ Create a simple slider with the following code:
 />
 ```
 
-*MainActivity.kt*
-
+**MainActivity.kt**
 ```kotlin
 class MainActivity : AppCompatActivity() {
   
@@ -42,11 +40,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-A slider needs animations between each transition. `slider` does not provide any animations but allow
-you to implement your custom animation so we can use it between each slide transition.
-
-To create a transition, all you need is to implement `ViewPager.PageTransformer` and pass it to
-`ImageSlider#pageTransformer`:
+A slider needs animations between each transition. To create a transition, all you need is to implement `ViewPager.PageTransformer` and pass it to `ImageSlider#pageTransformer`:
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
