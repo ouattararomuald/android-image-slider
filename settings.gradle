@@ -1,1 +1,2 @@
-include ':sample', ':slider', ':slider-transformers'
+include ':sample'
+include ':slider'
