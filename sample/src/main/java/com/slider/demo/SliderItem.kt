@@ -8,6 +8,8 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.kotlinandroidextensions.Item
 import com.xwray.groupie.kotlinandroidextensions.ViewHolder
 import kotlinx.android.synthetic.main.slider_item.slider
+import miaoyongjun.pagetransformer.MagicTransformer
+import miaoyongjun.pagetransformer.TransitionEffect
 
 internal class SliderItem(private val imageUrls: Array<String>) : Item() {
 
@@ -19,20 +21,9 @@ internal class SliderItem(private val imageUrls: Array<String>) : Item() {
       }
     })
 
-    viewHolder.slider.pagerTransformer = ViewPager.PageTransformer { view, pos->
-      val pageWidth = view.width
-
-      if (pos < -1) { // [-Infinity,-1)
-        // This page is way off-screen to the left.
-        view.alpha = 1F
-      } else if (pos <= 1) { // [-1,1]
-
-        view.translationX = -pos * (pageWidth / 2) //Half the normal speed
-      } else { // (1,+Infinity]
-        // This page is way off-screen to the right.
-        view.alpha = 1F
-      }
-    }
+    viewHolder.slider.pagerTransformer = MagicTransformer.getPageTransformer(
+        TransitionEffect.Cube
+    )
   }
 
   override fun getLayout(): Int = R.layout.slider_item
