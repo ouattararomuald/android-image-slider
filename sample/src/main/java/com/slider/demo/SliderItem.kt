@@ -1,6 +1,5 @@
 package com.slider.demo
 
-import android.support.v4.view.ViewPager
 import android.widget.ImageView
 import com.ouattararomuald.slider.ImageLoaderCallback
 import com.ouattararomuald.slider.SliderAdapter
