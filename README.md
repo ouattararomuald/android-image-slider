@@ -1,6 +1,88 @@
 # android-image-slider
 
-Android Image Slider.
+An image slider for android.
+
+This slider does not depends on any image loader library so your pick the one that best suits your
+needs.
+
+Create a simple slider with the following code:
+
+*activity_main.xml*
+
+```xml
+<com.ouattararomuald.slider.ImageSlider
+      android:id="@+id/image_slider"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+/>
+```
+
+*MainActivity.kt*
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+  
+  companion object {
+    private const val SLIDE_NUMBER = 10
+  }
+
+  private lateinit var imageSlider: ImageSlider
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+
+    imageSlider = findViewById(R.id.image_slider)
+    imageSlider.adapter = SliderAdapter(this, SLIDE_NUMBER, object: Callback {
+      override fun loadImageFor(imageView: ImageView, position: Int) {
+        // Load image using for favorite image loader (ex: fresco, glide or picasso...)
+      }
+    })
+  }
+}
+```
+
+A slider needs animations between each transition. `slider` does not provide any animations but allow
+you to implement your custom animation so we can use it between each slide transition.
+
+To create a transition, all you need is to implement `ViewPager.PageTransformer` and pass it to
+`ImageSlider#pageTransformer`:
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+  
+  companion object {
+    private const val SLIDE_NUMBER = 10
+  }
+
+  private lateinit var imageSlider: ImageSlider
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+
+    imageSlider = findViewById(R.id.image_slider)
+    imageSlider.adapter = SliderAdapter(this, SLIDE_NUMBER, object: Callback {
+      override fun loadImageFor(imageView: ImageView, position: Int) {
+        // Load image using for favorite image loader (ex: fresco, glide or picasso...)
+      }
+    })
+    
+    // here we use : https://github.com/miaoyongjun/PageTransformer
+    // which provides various ViewPager.PageTransformer implementations.
+    imageSlider.pageTransformer = MagicTransformer.getPageTransformer(
+       TransitionEffect.Cube
+    )
+  }
+}
+```
+
+## Download
+
+```groovy
+dependencies {
+}
+```
 
 ## License
 
