@@ -3,15 +3,16 @@
 buildscript {
 
   ext.buildConfig = [
-    'compileSdk': 'android-P',
+    'compileSdk': 'android-28',
     'minSdk': 16,
-    'targetSdk': 27,
+    'targetSdk': 28,
   ]
 
   ext.versions = [
+    'dokka': '0.9.17',
     'groupie': '2.1.0',
     'kotlin': '1.2.41',
-    'support': '27.1.1',
+    'support': '28.0.0-alpha3',
   ]
 
   ext.deps = [
@@ -43,6 +44,8 @@ buildscript {
     'picasso': 'com.squareup.picasso:picasso:2.71828',
   ]
 
+  ext.isCi = "true" == System.getenv('CI')
+
   repositories {
     google()
     jcenter()
@@ -51,9 +54,7 @@ buildscript {
   dependencies {
     classpath 'com.android.tools.build:gradle:3.2.0-alpha17'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
-
-    // NOTE: Do not place your application dependencies here; they belong
-    // in the individual module build.gradle files
+    classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:${versions.dokka}"
   }
 }
 
@@ -63,6 +64,16 @@ allprojects {
     jcenter()
     maven { url 'https://jitpack.io' }
   }
+}
+
+subprojects { project ->
+  repositories {
+    google()
+    jcenter()
+  }
+
+  group = GROUP
+  version = VERSION_NAME
 }
 
 task clean(type: Delete) {
