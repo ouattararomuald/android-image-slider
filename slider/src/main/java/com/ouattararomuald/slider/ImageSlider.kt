@@ -38,7 +38,7 @@ class ImageSlider : ConstraintLayout {
   private var timer: Timer? = null
   private val sliderTimer: SliderTimer by lazy { SliderTimer() }
 
-  var pagerTransformer: ViewPager.PageTransformer? = null
+  var pageTransformer: ViewPager.PageTransformer? = null
     set(value) {
       field = value
       if (value != null) {
