@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+
 android {
   compileSdkVersion buildConfig.compileSdk
 
@@ -35,3 +36,6 @@ dependencies {
   androidTestImplementation deps.android.support.test.runner
   androidTestImplementation deps.android.support.test.espresso.core
 }
+
+apply from: rootProject.file('gradle/dokka.gradle')
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
