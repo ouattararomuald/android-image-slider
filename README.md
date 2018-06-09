@@ -1,9 +1,6 @@
 # android-image-slider
 
-An image slider for android.
-
-This slider does not depends on any image loader library so your pick the one that best suits your
-needs.
+An image slider for android that let you pick the image loader library that best suits your needs.
 
 Create a simple slider with the following code:
 
