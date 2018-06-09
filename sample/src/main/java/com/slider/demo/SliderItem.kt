@@ -20,7 +20,7 @@ internal class SliderItem(private val imageUrls: Array<String>) : Item() {
       }
     })
 
-    viewHolder.slider.pagerTransformer = MagicTransformer.getPageTransformer(
+    viewHolder.slider.pageTransformer = MagicTransformer.getPageTransformer(
         TransitionEffect.Cube
     )
   }
