@@ -21,6 +21,12 @@ class SliderAdapter(
   private val imageLoaderCallback: ImageLoaderCallback
 ) : PagerAdapter() {
 
+  init {
+    if (slideNumbers <= 0) {
+      throw IllegalArgumentException("Slides number must be greater than 0")
+    }
+  }
+
   override fun isViewFromObject(view: View, obj: Any): Boolean = view == obj
 
   override fun getCount(): Int = slideNumbers
