@@ -26,8 +26,8 @@ class MainActivity : AppCompatActivity() {
       adapter = groupAdapter
     }
 
-    Data.URLS.forEach { urls ->
-      slidersSection.add(SliderItem(urls))
+    Data.URLS.keys.forEach { pageTransformer ->
+      slidersSection.add(SliderItem(Data.URLS[pageTransformer]!!, pageTransformer))
     }
   }
 }

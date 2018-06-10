@@ -1,4 +1,4 @@
-# android-image-slider
+# Image Slider
 
 An image slider for android.
 
@@ -77,6 +77,19 @@ class MainActivity : AppCompatActivity() {
 dependencies {
 }
 ```
+
+## Contributing
+
+Contributions you say? Yes please!
+
+**Bug report?**
+
+If at all possible, please attach a minimal sample project or code which reproduces the bug.
+Screenshots are also a huge help if the problem is visual.
+
+**Send a pull request!**
+
+If you're fixing a bug, please add a failing test or code that can reproduce the issue.
 
 ## License
 
