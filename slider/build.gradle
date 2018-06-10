@@ -35,6 +35,7 @@ dependencies {
 
   androidTestImplementation deps.android.support.test.runner
   androidTestImplementation deps.android.support.test.espresso.core
+  androidTestImplementation deps.truth
 }
 
 apply from: rootProject.file('gradle/dokka.gradle')

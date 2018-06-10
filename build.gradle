@@ -10,7 +10,7 @@ buildscript {
 
   ext.versions = [
     'dokka': '0.9.17',
-    'groupie': '2.1.0',
+    'groupie': '2.2.0-alpha1',
     'kotlin': '1.2.41',
     'support': '28.0.0-alpha3',
   ]
@@ -42,6 +42,7 @@ buildscript {
     'junit': 'junit:junit:4.12',
     'pageTransformer': 'com.github.miaoyongjun:PageTransformer:1.0',
     'picasso': 'com.squareup.picasso:picasso:2.71828',
+    'truth': 'com.google.truth:truth:0.40',
   ]
 
   ext.isCi = "true" == System.getenv('CI')
@@ -53,10 +54,13 @@ buildscript {
 
   dependencies {
     classpath 'com.android.tools.build:gradle:3.2.0-alpha17'
+    classpath 'com.github.ben-manes:gradle-versions-plugin:0.17.0'
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
     classpath "org.jetbrains.dokka:dokka-android-gradle-plugin:${versions.dokka}"
   }
 }
+
+apply plugin: 'com.github.ben-manes.versions'
 
 allprojects {
   repositories {
