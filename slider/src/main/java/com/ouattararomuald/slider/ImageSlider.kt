@@ -74,8 +74,8 @@ class ImageSlider : ConstraintLayout {
   var pageTransformer: ViewPager.PageTransformer? = null
     set(value) {
       field = value
-      if (value != null) {
-        viewPager.setPageTransformer(true, value)
+      if (field != null) {
+        viewPager.setPageTransformer(true, field)
       }
     }
 
@@ -94,6 +94,17 @@ class ImageSlider : ConstraintLayout {
           startAutoCycling()
         }
       }
+    }
+
+  /**
+   * Sets the visibility of the page indicator.
+   * The value must be one of [View.VISIBLE], [View.INVISIBLE] or [View.GONE]
+   */
+  var pageIndicatorVisibility: Int = View.VISIBLE
+    set(value) {
+      field = value
+
+      indicator.visibility = field
     }
 
   constructor(context: Context) : this(context, null)
@@ -166,15 +177,6 @@ class ImageSlider : ConstraintLayout {
     }
   }
 
-  /**
-   * Sets the visibility of the indicator page.
-   *
-   * @param visibility One of [View.VISIBLE], [View.INVISIBLE] or [View.GONE]
-   */
-  fun setPageIndicatorVisibility(visibility: Int) {
-    indicator.visibility = visibility
-  }
-
   /** Starts slides auto transitions. */
   fun startAutoCycling() {
     if (!isAutoCycling) {
@@ -188,7 +190,7 @@ class ImageSlider : ConstraintLayout {
     }
   }
 
-  /** Pauses slides auto transitions. */
+  /** Stops slides auto transitions. */
   fun stopAutoCycling() {
     if (isAutoCycling) {
       timer?.cancel()
