@@ -70,9 +70,20 @@ class MainActivity : AppCompatActivity() {
 
 ## Download
 
-```groovy
-dependencies {
-}
+Download the [latest AAR](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.ouattararomuald%22%20AND%20a%3A%22slider%22) or grab via Gradle:
+
+```
+implementation 'com.ouattararomuald:slider:0.1.0'
+```
+
+or Maven:
+
+```
+<dependency>
+  <groupId>com.ouattararomuald</groupId>
+  <artifactId>slider</artifactId>
+  <version>0.1.0</version>
+</dependency>
 ```
 
 ## Contributing
