@@ -78,7 +78,7 @@ implementation 'com.ouattararomuald:slider:0.1.0'
 
 or Maven:
 
-```
+```xml
 <dependency>
   <groupId>com.ouattararomuald</groupId>
   <artifactId>slider</artifactId>
