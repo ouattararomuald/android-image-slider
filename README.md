@@ -2,7 +2,7 @@
 
 An image slider for android that let you pick the image loader library that best suits your needs.
 
-![Image slider illustration](https://imgur.com/E63Afgf)
+![Image slider illustration](https://imgur.com/8GtpKr6.gif)
 
 Create a simple slider with the following code:
 
