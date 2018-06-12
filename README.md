@@ -70,6 +70,20 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
+**Atributes**
+
+The attributes below are available for usage in your `xml` files:
+
+Attributes | Descriptions
+------------ | -------------
+autoRecoverAfterTouchEvent | Determines whether or not the ImageSlider should recover after user touch event.
+indicatorBackground | Reference to a background to be applied to Slider's indicator.
+initialSlideDelay | Delay in milliseconds before the first slide change.
+initWithAutoCycling | Determines whether or not the ImageSlider should immediately starts its transitions.
+sliderBackground | Reference to a background to be applied to Slider.
+slideTransitionInterval | Time in milliseconds between successive slide changes.
+
+
 ## Download
 
 Download the [latest AAR](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.ouattararomuald%22%20AND%20a%3A%22slider%22) or grab via Gradle:
