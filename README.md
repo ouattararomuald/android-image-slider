@@ -115,6 +115,14 @@ Screenshots are also a huge help if the problem is visual.
 
 If you're fixing a bug, please add a failing test or code that can reproduce the issue.
 
+**Build steps**
+
+1. Build artifacts with ./gradlew assemble
+1. Run Tests ./gradlew test
+1. Run Instrumented Test ./gradlew :sample:connectedAndroidTest
+1. Run Android Lint ./gradlew lint
+1. Run Kotlin Lint ./gradlew detektCheck
+
 ## License
 
 ```
