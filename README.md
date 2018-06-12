@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
 
 Download the [latest AAR](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.ouattararomuald%22%20AND%20a%3A%22slider%22) or grab via Gradle:
 
-```
+```gradle
 implementation 'com.ouattararomuald:slider:0.1.0'
 ```
 
