@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/ouattararomuald/android-image-slider.svg?style=svg)](https://circleci.com/gh/ouattararomuald/android-image-slider)
+
 # Image Slider
 
 An image slider for android that let you pick the image loader library that best suits your needs.
