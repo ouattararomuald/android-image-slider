@@ -21,6 +21,7 @@ buildscript {
         'appcompatV7': "com.android.support:appcompat-v7:${versions.support}",
         'constraintLayout': 'com.android.support.constraint:constraint-layout:1.1.1',
         'design': "com.android.support:design:${versions.support}",
+        'exifinterface': "com.android.support:exifinterface:${versions.support}",
         'recyclerview': "com.android.support:recyclerview-v7:${versions.support}",
         'test': [
           'runner': 'com.android.support.test:runner:1.0.2',
@@ -60,6 +61,10 @@ buildscript {
   }
 }
 
+plugins {
+  id 'io.gitlab.arturbosch.detekt' version '1.0.0.RC7-2'
+}
+
 apply plugin: 'com.github.ben-manes.versions'
 
 allprojects {
@@ -78,8 +83,28 @@ subprojects { project ->
 
   group = GROUP
   version = VERSION_NAME
+
+  task copyResourcesToClasses(type: Copy) {
+    from "${projectDir}/src/test/resources"
+    into "${buildDir}/intermediates/classes/test/debug/resources"
+  }
+
+  afterEvaluate {
+    if (project.tasks.findByName('assembleDebug')) {
+      assembleDebug.dependsOn(copyResourcesToClasses)
+    }
+  }
 }
 
 task clean(type: Delete) {
   delete rootProject.buildDir
+}
+
+detekt {
+  version = "1.0.0.RC7-2"
+  profile("main") {
+    input = "$projectDir/app/src/main/java"
+    config = "$projectDir/code-analysis/detekt.yml"
+    filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+  }
 }
