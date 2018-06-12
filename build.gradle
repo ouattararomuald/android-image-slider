@@ -102,8 +102,13 @@ task clean(type: Delete) {
 
 detekt {
   version = "1.0.0.RC7-2"
-  profile("main") {
-    input = "$projectDir/app/src/main/java"
+  profile("sample") {
+    input = "$projectDir/sample/src/main/java"
+    config = "$projectDir/code-analysis/detekt.yml"
+    filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+  }
+  profile("slider") {
+    input = "$projectDir/slider/src/main/java"
     config = "$projectDir/code-analysis/detekt.yml"
     filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
   }
