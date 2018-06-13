@@ -4,16 +4,20 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.os.Handler
-import android.support.annotation.IntDef
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewCompat
 import android.support.v4.view.ViewPager
 import android.support.v7.content.res.AppCompatResources
+import android.support.v7.widget.AppCompatTextView
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
+import android.view.animation.Animation
+import android.view.animation.TranslateAnimation
+import android.widget.LinearLayout
 import java.util.Timer
 import java.util.TimerTask
 
@@ -35,6 +39,8 @@ class ImageSlider : ConstraintLayout {
 
   private val viewPager: ViewPager
   private val indicator: TabLayout
+  private val descriptionLayout: LinearLayout
+  private val descriptionTextView: AppCompatTextView
 
   private var sliderBackgroundResId: Int = 0
   private var indicatorBackgroundResId: Int = 0
@@ -57,6 +63,20 @@ class ImageSlider : ConstraintLayout {
 
   private var timer: Timer? = null
   private var sliderTimer: SliderTimer? = null
+
+  private var onPageChangeListener = object : ViewPager.OnPageChangeListener {
+    override fun onPageScrollStateChanged(state: Int) {
+    }
+
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+    }
+
+    override fun onPageSelected(position: Int) {
+      adapter?.let {
+        displayDescriptionIfAvailable(it)
+      }
+    }
+  }
 
   private val viewPagerTouchLister = OnTouchListener { _, event ->
     when (event.action) {
@@ -88,6 +108,7 @@ class ImageSlider : ConstraintLayout {
       if (value != null) {
         viewPager.adapter = field
 
+        displayDescriptionIfAvailable(field!!)
         setupIndicatorWithViewPagerIfNecessary()
 
         if (initWithAutoCycling) {
@@ -103,9 +124,41 @@ class ImageSlider : ConstraintLayout {
   var pageIndicatorVisibility: Int = View.VISIBLE
     set(value) {
       field = value
-
       indicator.visibility = field
     }
+
+  /**
+   * [Animation] used to animate the entrance of the description text.
+   *
+   * Note that the exit animation will be played automatically at the end of the entrance animation.
+   * To avoid this set the [descriptionExitAnimation]  to `null`.
+   *
+   * @see [descriptionExitAnimation]
+   */
+  private var descriptionEntranceAnimation: Animation? = null
+    set(value) {
+      field = value
+      field?.setAnimationListener(descriptionAnimationListener)
+    }
+
+  /**
+   * [Animation] used to animate the exit of the description text.
+   *
+   * @see [descriptionEntranceAnimation]
+   */
+  private var descriptionExitAnimation: Animation? = null
+
+  private var descriptionAnimationListener = object : Animation.AnimationListener {
+    override fun onAnimationRepeat(animation: Animation) {
+    }
+
+    override fun onAnimationEnd(animation: Animation) {
+      descriptionExitAnimation?.let { startDescriptionExitAnimation() }
+    }
+
+    override fun onAnimationStart(animation: Animation) {
+    }
+  }
 
   constructor(context: Context) : this(context, null)
 
@@ -118,7 +171,14 @@ class ImageSlider : ConstraintLayout {
 
     viewPager = findViewById(R.id.view_pager)
     indicator = findViewById(R.id.indicator)
+    descriptionLayout = findViewById(R.id.description_layout)
+    descriptionTextView = findViewById(R.id.description_textview)
 
+    descriptionEntranceAnimation = AnimationGenerator.generateEntranceAnimation(
+        descriptionLayout, AnimationType.TRANSLATION
+    )
+
+    viewPager.addOnPageChangeListener(onPageChangeListener)
     viewPager.setOnTouchListener(viewPagerTouchLister)
 
     val attributes: TypedArray = context.theme.obtainStyledAttributes(
@@ -220,5 +280,29 @@ class ImageSlider : ConstraintLayout {
         }
       }
     }
+  }
+
+  private fun displayDescriptionIfAvailable(sliderAdapter: SliderAdapter) {
+    if (sliderAdapter.hasDescriptions) {
+      startDescriptionEntranceAnimation()
+      descriptionTextView.text = sliderAdapter.descriptions[viewPager.currentItem]
+    }
+  }
+
+  /** Animates the entrance of the description text. */
+  private fun startDescriptionEntranceAnimation() {
+    descriptionEntranceAnimation = AnimationGenerator.generateEntranceAnimation(
+        descriptionLayout, AnimationType.TRANSLATION
+    )
+    descriptionEntranceAnimation?.setAnimationListener(descriptionAnimationListener)
+    descriptionLayout.startAnimation(descriptionEntranceAnimation)
+  }
+
+  /** Animates the exit of the description text. */
+  private fun startDescriptionExitAnimation() {
+    descriptionExitAnimation = AnimationGenerator.generateExitAnimation(
+        descriptionLayout, AnimationType.TRANSLATION
+    )
+    descriptionLayout.startAnimation(descriptionExitAnimation)
   }
 }
