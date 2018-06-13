@@ -20,4 +20,20 @@
       app:tabIndicatorHeight="0dp"
       app:layout_constraintBottom_toBottomOf="@id/view_pager"
   />
+  <LinearLayout
+      android:id="@+id/description_layout"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/descriptionBackground"
+      android:orientation="vertical"
+      android:paddingLeft="4dp"
+      app:layout_constraintBottom_toBottomOf="@id/view_pager"
+  >
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/description_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+    />
+  </LinearLayout>
 </android.support.constraint.ConstraintLayout>
