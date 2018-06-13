@@ -76,7 +76,7 @@ internal class Data private constructor() {
       (1..number).forEach {
         descriptions.add("Description $it")
       }
-      
+
       return descriptions
     }
   }
