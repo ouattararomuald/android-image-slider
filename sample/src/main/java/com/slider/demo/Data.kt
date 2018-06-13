@@ -3,7 +3,7 @@ package com.slider.demo
 import miaoyongjun.pagetransformer.MagicTransformer
 import miaoyongjun.pagetransformer.TransitionEffect
 
-internal class Data {
+internal class Data private constructor() {
   companion object {
     private const val BASE = "http://i.imgur.com/"
     private const val EXT = ".jpg"
@@ -69,5 +69,15 @@ internal class Data {
             BASE + "z77CaIt" + EXT
         )
     )
+
+    fun generateDescriptions(number: Int = 1): ArrayList<String> {
+      val descriptions: ArrayList<String> = ArrayList(number)
+
+      (1..number).forEach {
+        descriptions.add("Description $it")
+      }
+      
+      return descriptions
+    }
   }
 }

@@ -15,12 +15,15 @@ internal class SliderItem(
 ) : Item() {
 
   override fun bind(viewHolder: ViewHolder, position: Int) {
-    viewHolder.slider.adapter = SliderAdapter(
-        viewHolder.slider.context, imageUrls.size, object : ImageLoaderCallback {
-      override fun loadImageFor(imageView: ImageView, position: Int) {
-        Picasso.get().load(imageUrls[position]).fit().into(imageView)
-      }
-    })
+    viewHolder.slider.adapter = SliderAdapter(viewHolder.slider.context,
+        imageUrls.size,
+        object : ImageLoaderCallback {
+          override fun loadImageFor(imageView: ImageView, position: Int) {
+            Picasso.get().load(imageUrls[position]).fit().into(imageView)
+          }
+        },
+        Data.generateDescriptions(imageUrls.size)
+    )
     viewHolder.slider.pageTransformer = pageTransformer
   }
 
