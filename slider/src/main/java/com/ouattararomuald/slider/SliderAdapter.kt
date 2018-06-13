@@ -18,14 +18,27 @@ class SliderAdapter(
   /** Number of slides to display. */
   val slideNumbers: Int,
   /** Image loader callback. */
-  private val imageLoaderCallback: ImageLoaderCallback
+  private val imageLoaderCallback: ImageLoaderCallback,
+  /** Slides descriptions. */
+  val descriptions: List<String> = emptyList()
 ) : PagerAdapter() {
 
   init {
     if (slideNumbers <= 0) {
       throw IllegalArgumentException("Slides number must be greater than 0")
     }
+    if (descriptions.isNotEmpty() && descriptions.size != slideNumbers) {
+      throw IllegalArgumentException("Descriptions number must be the same as number of slides")
+    }
   }
+
+  /**
+   * Determines whether this adapter has attached description or not.
+   *
+   * @return true if it has descriptions. Otherwise returns false.
+   */
+  val hasDescriptions: Boolean
+    get() = descriptions.isNotEmpty()
 
   override fun isViewFromObject(view: View, obj: Any): Boolean = view == obj
 
