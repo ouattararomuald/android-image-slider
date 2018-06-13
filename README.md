@@ -103,6 +103,7 @@ or Maven:
   <version>0.1.0</version>
 </dependency>
 ```
+Snapshots of the development version are available in [Sonatype's snapshots repository](https://oss.sonatype.org/content/repositories/snapshots/).
 
 ## Contributing
 
