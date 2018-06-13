@@ -119,11 +119,11 @@ If you're fixing a bug, please add a failing test or code that can reproduce the
 
 **Build steps**
 
-1. Build artifacts with ./gradlew assemble
-1. Run Tests ./gradlew test
-1. Run Instrumented Test ./gradlew :sample:connectedAndroidTest
-1. Run Android Lint ./gradlew lint
-1. Run Kotlin Lint ./gradlew detektCheck
+1. Build artifacts with `./gradlew assemble`
+1. Run Tests `./gradlew test`
+1. Run Instrumented Test `./gradlew :sample:connectedAndroidTest`
+1. Run Android Lint `./gradlew lint`
+1. Run Kotlin Lint `./gradlew detektCheck`
 
 ## License
 
