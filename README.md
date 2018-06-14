@@ -6,6 +6,8 @@ An image slider for android that let you pick the image loader library that best
 
 <img src="https://imgur.com/Id4u1i8.gif" width=400/>
 
+## Usage
+
 Create a simple slider with the following code:
 
 **activity_main.xml**
@@ -46,6 +48,12 @@ class MainActivity : AppCompatActivity() {
   }
 }
 ```
+
+`Slider` comes with Picasso as dependency to load an Images. If you want to use another library,
+all you need is to extends `ImageLoader#Factory` and pass your factory to `SliderAdapter`.
+
+
+## Animations
 
 A slider needs animations between each transition. To create a transition, all you need is to implement `ViewPager.PageTransformer` and pass it to `ImageSlider#pageTransformer`:
 
