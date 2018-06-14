@@ -37,6 +37,8 @@ dependencies {
   implementation deps.android.support.constraintLayout
   implementation deps.android.support.design
 
+  api deps.picasso
+
   testImplementation deps.junit
 
   androidTestImplementation deps.android.support.test.runner
