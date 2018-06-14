@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <declare-styleable name="ImageSlider">
+    <!-- Determines whether or not the ImageSlider should recover after user touch event. -->
+    <attr name="autoRecoverAfterTouchEvent" format="boolean"/>
+    <!-- Determines whether or not the ImageSlider should immediately starts its transitions. -->
+    <attr name="initWithAutoCycling" format="boolean"/>
+    <!-- Reference to a background to be applied to Slider's indicator. -->
+    <attr name="indicatorBackground" format="reference"/>
+    <!-- Delay in milliseconds before the first slide change. -->
+    <attr name="initialSlideDelay" format="integer"/>
+    <!-- Reference to a background to be applied to Slider. -->
+    <attr name="sliderBackground" format="reference"/>
+    <!-- Time in milliseconds between successive slide changes. -->
+    <attr name="slideTransitionInterval" format="integer"/>
+  </declare-styleable>
+</resources>

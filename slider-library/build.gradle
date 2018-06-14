@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+
+android {
+  compileSdkVersion buildConfig.compileSdk
+
+  defaultConfig {
+    minSdkVersion buildConfig.minSdk
+    targetSdkVersion buildConfig.targetSdk
+    versionCode 1
+    versionName "1.0"
+
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+
+  lintOptions {
+    textReport true
+    textOutput 'stdout'
+  }
+
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation deps.kotlin.stdlib.jdk7
+
+  implementation deps.android.support.annotations
+  implementation deps.android.support.appcompatV7
+  implementation deps.android.support.constraintLayout
+  implementation deps.android.support.design
+
+  api deps.picasso
+
+  testImplementation deps.junit
+
+  androidTestImplementation deps.android.support.test.runner
+  androidTestImplementation deps.android.support.test.espresso.core
+  androidTestImplementation deps.truth
+}
+
+apply from: rootProject.file('gradle/dokka.gradle')
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
