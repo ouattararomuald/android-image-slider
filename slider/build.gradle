@@ -32,6 +32,7 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation deps.kotlin.stdlib.jdk7
 
+  implementation deps.android.support.annotations
   implementation deps.android.support.appcompatV7
   implementation deps.android.support.constraintLayout
   implementation deps.android.support.design
