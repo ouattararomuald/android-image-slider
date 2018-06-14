@@ -272,7 +272,7 @@ class ImageSlider : ConstraintLayout {
       adapter?.let {
         val mainHandler = Handler(context.mainLooper)
         mainHandler.post {
-          if (viewPager.currentItem < it.slideNumbers - 1) {
+          if (viewPager.currentItem < it.imageUrls.size - 1) {
             viewPager.currentItem = viewPager.currentItem + 1
           } else {
             viewPager.currentItem = 0
