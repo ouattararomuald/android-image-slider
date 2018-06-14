@@ -26,17 +26,23 @@ class MainActivity : AppCompatActivity() {
   }
 
   private lateinit var imageSlider: ImageSlider
+  private val imageUrls = arrayOf<String>(
+    "http://i.imgur.com/CqmBjo5.jpg", 
+    "http://i.imgur.com/zkaAooq.jpg", 
+    "http://i.imgur.com/0gqnEaY.jpg"
+  )
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
     imageSlider = findViewById(R.id.image_slider)
-    imageSlider.adapter = SliderAdapter(this, SLIDE_NUMBER, object: Callback {
-      override fun loadImageFor(imageView: ImageView, position: Int) {
-        // Load image using for favorite image loader (ex: fresco, glide or picasso...)
-      }
-    })
+    imageSlider.adapter = SliderAdapter(
+      this,
+      PicassoImageLoaderFactory(),
+      imageUrls = imageUrls,
+      descriptions = Data.generateDescriptions(imageUrls.size)
+    )
   }
 }
 ```
@@ -51,23 +57,24 @@ class MainActivity : AppCompatActivity() {
   }
 
   private lateinit var imageSlider: ImageSlider
+  private val imageUrls = arrayOf<String>(
+    "http://i.imgur.com/CqmBjo5.jpg", 
+    "http://i.imgur.com/zkaAooq.jpg", 
+    "http://i.imgur.com/0gqnEaY.jpg"
+  )
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
     imageSlider = findViewById(R.id.image_slider)
-    imageSlider.adapter = SliderAdapter(this, SLIDE_NUMBER, object: Callback {
-      override fun loadImageFor(imageView: ImageView, position: Int) {
-        // Load image using for favorite image loader (ex: fresco, glide or picasso...)
-      }
-    })
-    
-    // here we use : https://github.com/miaoyongjun/PageTransformer
-    // which provides various ViewPager.PageTransformer implementations.
-    imageSlider.pageTransformer = MagicTransformer.getPageTransformer(
-       TransitionEffect.Cube
+    imageSlider.adapter = SliderAdapter(
+      this,
+      PicassoImageLoaderFactory(),
+      imageUrls = imageUrls,
+      descriptions = Data.generateDescriptions(imageUrls.size)
     )
+    imageSlider.pageTransformer = MyPageTransformer() // Custom Page Transformer
   }
 }
 ```
