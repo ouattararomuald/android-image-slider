@@ -1,3 +1,2 @@
 include ':sample'
-include ':slider'
-include ':image-loaders-glide'
+include ':slider-library'
