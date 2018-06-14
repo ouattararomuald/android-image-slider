@@ -12,24 +12,28 @@ import android.widget.ImageView
  * Adapter to create a slider.
  *
  * The slider will have the given number of slides.
+ *
+ * @param imageLoaderFactory Image loader factory.
+ * @param imageUrls Urls of images to display.
+ * @param descriptions Images descriptions.
  */
 class SliderAdapter(
   private val context: Context,
-  /** Number of slides to display. */
-  val slideNumbers: Int,
-  /** Image loader callback. */
-  private val imageLoaderCallback: ImageLoaderCallback,
-  /** Slides descriptions. */
+  imageLoaderFactory: ImageLoader.Factory<*>,
+  val imageUrls: List<String>,
   val descriptions: List<String> = emptyList()
 ) : PagerAdapter() {
 
+  private val imageLoader: ImageLoader
+
   init {
-    if (slideNumbers <= 0) {
-      throw IllegalArgumentException("Slides number must be greater than 0")
+    if (imageUrls.isEmpty()) {
+      throw IllegalArgumentException("imagesUrls number must be greater than 0")
     }
-    if (descriptions.isNotEmpty() && descriptions.size != slideNumbers) {
+    if (descriptions.isNotEmpty() && descriptions.size != imageUrls.size) {
       throw IllegalArgumentException("Descriptions number must be the same as number of slides")
     }
+    imageLoader = imageLoaderFactory.create()
   }
 
   /**
@@ -42,15 +46,14 @@ class SliderAdapter(
 
   override fun isViewFromObject(view: View, obj: Any): Boolean = view == obj
 
-  override fun getCount(): Int = slideNumbers
+  override fun getCount(): Int = imageUrls.size
 
   override fun instantiateItem(container: ViewGroup, position: Int): Any {
     val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
     val view = inflater.inflate(R.layout.slider_view, null)
 
     val slideImageView = view.findViewById(R.id.image) as ImageView
-
-    imageLoaderCallback.loadImageFor(slideImageView, position)
+    imageLoader.load(imageUrls[position], slideImageView)
 
     val viewPager = container as ViewPager
     viewPager.addView(view, 0)
