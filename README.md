@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private lateinit var imageSlider: ImageSlider
-  private val imageUrls = arrayOf<String>(
+  private val imageUrls = arrayListOf(
     "http://i.imgur.com/CqmBjo5.jpg", 
     "http://i.imgur.com/zkaAooq.jpg", 
     "http://i.imgur.com/0gqnEaY.jpg"
@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
   }
 
   private lateinit var imageSlider: ImageSlider
-  private val imageUrls = arrayOf<String>(
+  private val imageUrls = arrayListOf(
     "http://i.imgur.com/CqmBjo5.jpg", 
     "http://i.imgur.com/zkaAooq.jpg", 
     "http://i.imgur.com/0gqnEaY.jpg"
