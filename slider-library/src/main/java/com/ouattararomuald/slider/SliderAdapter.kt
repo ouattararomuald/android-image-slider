@@ -41,7 +41,7 @@ class SliderAdapter(
    *
    * @return true if it has descriptions. Otherwise returns false.
    */
-  val hasDescriptions: Boolean
+  internal val hasDescriptions: Boolean
     get() = descriptions.isNotEmpty()
 
   override fun isViewFromObject(view: View, obj: Any): Boolean = view == obj

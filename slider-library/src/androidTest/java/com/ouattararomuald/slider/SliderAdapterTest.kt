@@ -47,6 +47,8 @@ class SliderAdapterTest {
     )
 
     assertThat(sliderAdapter).isNotNull()
+    assertThat(sliderAdapter.hasDescriptions).isTrue()
+    assertThat(sliderAdapter.count).isEqualTo(QUANTITY)
   }
 
   private fun createSliderAdapter(numberOfImages: Int, numberOfDescriptions: Int): SliderAdapter {
