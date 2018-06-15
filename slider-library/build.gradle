@@ -20,6 +20,12 @@ android {
     textOutput 'stdout'
   }
 
+  testOptions {
+    unitTests {
+      includeAndroidResources = true
+    }
+  }
+
   buildTypes {
     release {
       minifyEnabled false
