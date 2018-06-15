@@ -39,6 +39,8 @@ dependencies {
 
   api deps.picasso
 
+  testImplementation deps.android.robolectric.core
+  testImplementation deps.truth
   testImplementation deps.junit
 
   androidTestImplementation deps.android.support.test.runner
