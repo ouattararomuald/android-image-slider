@@ -3,7 +3,6 @@ package com.ouattararomuald.slider
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
-import android.os.Handler
 import android.support.constraint.ConstraintLayout
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewCompat
@@ -16,10 +15,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.view.animation.Animation
-import android.view.animation.TranslateAnimation
 import android.widget.LinearLayout
-import java.util.Timer
-import java.util.TimerTask
 
 /**
  * Layout manager that allows auto-flip left and right through images.
@@ -61,8 +57,7 @@ class ImageSlider : ConstraintLayout {
   /** Determines whether or not the ImageSlider should recover after user touch event. */
   private var autoRecoverAfterTouchEvent = true
 
-  private var timer: Timer? = null
-  private var sliderTimer: SliderTimer? = null
+  private val loopHandler: LoopHandler
 
   private var onPageChangeListener = object : ViewPager.OnPageChangeListener {
     override fun onPageScrollStateChanged(state: Int) {
@@ -82,7 +77,7 @@ class ImageSlider : ConstraintLayout {
     when (event.action) {
       MotionEvent.ACTION_UP -> {
         if (autoRecoverAfterTouchEvent) {
-          startAutoCycling()
+          startAutoLooping()
         }
       }
     }
@@ -103,7 +98,7 @@ class ImageSlider : ConstraintLayout {
   var adapter: SliderAdapter? = null
     set(value) {
       field = value
-      stopAutoCycling()
+      stopAutoLooping()
 
       if (value != null) {
         viewPager.adapter = field
@@ -112,7 +107,7 @@ class ImageSlider : ConstraintLayout {
         setupIndicatorWithViewPagerIfNecessary()
 
         if (initWithAutoCycling) {
-          startAutoCycling()
+          startAutoLooping()
         }
       }
     }
@@ -202,6 +197,16 @@ class ImageSlider : ConstraintLayout {
       ).toLong()
     }
 
+    loopHandler = LoopHandler(initialSlideDelay, slideTransitionInterval, onLoop = {
+      adapter?.let {
+        if (viewPager.currentItem < it.imageUrls.size - 1) {
+          viewPager.currentItem = viewPager.currentItem + 1
+        } else {
+          viewPager.currentItem = 0
+        }
+      }
+    })
+
     if (indicatorBackgroundResId != 0) {
       ViewCompat.setBackground(
           indicator, AppCompatResources.getDrawable(context, indicatorBackgroundResId)
@@ -224,7 +229,7 @@ class ImageSlider : ConstraintLayout {
     }
 
     when (event.action) {
-      MotionEvent.ACTION_DOWN -> stopAutoCycling()
+      MotionEvent.ACTION_DOWN -> stopAutoLooping()
     }
 
     return false
@@ -238,23 +243,17 @@ class ImageSlider : ConstraintLayout {
   }
 
   /** Starts slides auto transitions. */
-  fun startAutoCycling() {
+  fun startAutoLooping() {
     if (!isAutoCycling) {
-      timer?.cancel()
-      sliderTimer?.cancel()
-
-      timer = Timer()
-      sliderTimer = SliderTimer()
-      timer?.scheduleAtFixedRate(sliderTimer, initialSlideDelay, slideTransitionInterval)
+      loopHandler.startAutoLooping()
       isAutoCycling = true
     }
   }
 
   /** Stops slides auto transitions. */
-  fun stopAutoCycling() {
+  fun stopAutoLooping() {
     if (isAutoCycling) {
-      timer?.cancel()
-      sliderTimer?.cancel()
+      loopHandler.stopAutoLooping()
       isAutoCycling = false
     }
   }
@@ -265,21 +264,6 @@ class ImageSlider : ConstraintLayout {
 
   fun removeOnPageChangeListener(pageChangeListener: ViewPager.OnPageChangeListener) {
     viewPager.removeOnPageChangeListener(pageChangeListener)
-  }
-
-  private inner class SliderTimer : TimerTask() {
-    override fun run() {
-      adapter?.let {
-        val mainHandler = Handler(context.mainLooper)
-        mainHandler.post {
-          if (viewPager.currentItem < it.imageUrls.size - 1) {
-            viewPager.currentItem = viewPager.currentItem + 1
-          } else {
-            viewPager.currentItem = 0
-          }
-        }
-      }
-    }
   }
 
   private fun displayDescriptionIfAvailable(sliderAdapter: SliderAdapter) {
