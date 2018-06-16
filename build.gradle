@@ -12,7 +12,6 @@ buildscript {
     'dokka': '0.9.17',
     'groupie': '2.2.0-alpha1',
     'kotlin': '1.2.50',
-    'robolectric': '3.8',
     'support': '28.0.0-alpha3',
   ]
 
@@ -31,9 +30,6 @@ buildscript {
             'core': 'com.android.support.test.espresso:espresso-core:3.0.2',
           ],
         ]
-      ],
-      'robolectric': [
-        'core': "org.robolectric:robolectric:${versions.robolectric}",
       ],
     ],
     'kotlin': [
@@ -113,7 +109,7 @@ detekt {
     filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
   }
   profile("slider") {
-    input = "$projectDir/slider/src/main/java"
+    input = "$projectDir/slider-library/src/main/java"
     config = "$projectDir/code-analysis/detekt.yml"
     filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
   }
