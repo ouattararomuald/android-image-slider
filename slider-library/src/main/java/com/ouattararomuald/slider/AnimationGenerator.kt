@@ -5,6 +5,12 @@ import android.view.View
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 
+/**
+ * This utility class generates entrance and/or exit animations.
+ *
+ * - **Entrance animations** are played while the view is being displayed.
+ * - **Exit animations** are played before the view disappear.
+ */
 internal class AnimationGenerator private constructor() {
   companion object {
     @VisibleForTesting internal const val DEFAULT_ANIMATION_DURATION_IN_MILLIS = 500L
