@@ -50,7 +50,7 @@ class SliderAdapter(
 
   override fun instantiateItem(container: ViewGroup, position: Int): Any {
     val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    val view = inflater.inflate(R.layout.slider_view, null)
+    val view = inflater.inflate(R.layout.slider_view, container, false)
 
     val slideImageView = view.findViewById(R.id.image) as ImageView
     imageLoader.load(imageUrls[position], slideImageView)
