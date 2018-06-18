@@ -26,7 +26,8 @@
       android:layout_height="wrap_content"
       android:background="@color/descriptionBackground"
       android:orientation="vertical"
-      android:paddingLeft="4dp"
+      android:paddingLeft="@dimen/description_horizontal_padding"
+      android:paddingRight="@dimen/description_horizontal_padding"
       app:layout_constraintBottom_toBottomOf="@id/view_pager"
   >
     <android.support.v7.widget.AppCompatTextView
