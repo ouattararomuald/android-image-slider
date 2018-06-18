@@ -42,6 +42,7 @@ dependencies {
   implementation deps.android.support.appcompatV7
   implementation deps.android.support.constraintLayout
   implementation deps.android.support.design
+  implementation deps.android.support.exifinterface
 
   api deps.picasso
 
