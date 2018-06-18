@@ -258,12 +258,32 @@ class ImageSlider : ConstraintLayout {
     }
   }
 
+  /**
+   * Add a listener that will be invoked whenever the page changes or is incrementally scrolled.
+   * See [ViewPager.OnPageChangeListener].
+   *
+   * Components that add a listener should take care to remove it when finished. Other components
+   * that take ownership of a view may call [clearOnPageChangeListeners] to remove all
+   * attached listeners.
+   *
+   * @param pageChangeListener Listener to add.
+   */
   fun addOnPageChangeListener(pageChangeListener: ViewPager.OnPageChangeListener) {
     viewPager.addOnPageChangeListener(pageChangeListener)
   }
 
+  /**
+   * Remove a listener that was previously added via [addOnPageChangeListener].
+   *
+   * @param pageChangeListener Listener to remove.
+   */
   fun removeOnPageChangeListener(pageChangeListener: ViewPager.OnPageChangeListener) {
     viewPager.removeOnPageChangeListener(pageChangeListener)
+  }
+
+  /** Remove all listeners that are notified of any changes in scroll state or position. */
+  fun clearOnPageChangeListeners() {
+    viewPager.clearOnPageChangeListeners()
   }
 
   private fun displayDescriptionIfAvailable(sliderAdapter: SliderAdapter) {
