@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [1.0.0]
+
 - Add **Picasso** as default Image Loader. User can still provide another library as *ImageLoader*. (Breaking change)
 - Add Image urls to parameters of **SlideAdapter**. (Breaking change)
 - Add description text for each slide.

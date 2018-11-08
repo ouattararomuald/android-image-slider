@@ -106,7 +106,7 @@ slideTransitionInterval | Time in milliseconds between successive slide changes.
 Download the [latest AAR](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.ouattararomuald%22%20AND%20a%3A%22slider%22) or grab via Gradle:
 
 ```gradle
-implementation 'com.ouattararomuald:slider:0.1.0'
+implementation 'com.ouattararomuald:slider:1.0.0'
 ```
 
 or Maven:
@@ -115,7 +115,7 @@ or Maven:
 <dependency>
   <groupId>com.ouattararomuald</groupId>
   <artifactId>slider</artifactId>
-  <version>0.1.0</version>
+  <version>1.0.0</version>
 </dependency>
 ```
 Snapshots of the development version are available in [Sonatype's snapshots repository](https://oss.sonatype.org/content/repositories/snapshots/).
