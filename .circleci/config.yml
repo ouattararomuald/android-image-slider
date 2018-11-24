@@ -8,9 +8,11 @@ jobs:
     working_directory: ~/android-image-slider
 
     docker:
-      - image: circleci/android:api-28-alpha
+      - image: circleci/android:api-28-node8-alpha
 
     environment:
+      JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64
+      ANDROID_HOME: /usr/local/android-sdk-linux
       TERM: dumb
 
     steps:
