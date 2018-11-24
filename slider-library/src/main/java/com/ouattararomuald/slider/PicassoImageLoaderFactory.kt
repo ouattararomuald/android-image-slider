@@ -1,6 +1,6 @@
 package com.ouattararomuald.slider
 
-import android.support.annotation.DrawableRes
+import androidx.annotation.DrawableRes
 import android.widget.ImageView
 
 /** An [ImageLoader.Factory] which uses Picasso. */

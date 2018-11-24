@@ -1,6 +1,6 @@
 package com.ouattararomuald.slider
 
-import android.support.annotation.VisibleForTesting
+import androidx.annotation.VisibleForTesting
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
