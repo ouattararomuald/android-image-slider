@@ -1,16 +1,16 @@
 package com.slider.demo
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.ViewHolder
 
 class MainActivity : AppCompatActivity() {
 
-  private lateinit var recyclerView: RecyclerView
+  private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
   private val groupAdapter = GroupAdapter<ViewHolder>()
   private val slidersSection = Section()
 
@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     recyclerView = findViewById(R.id.recycler_view)
     recyclerView.apply {
-      layoutManager = GridLayoutManager(this@MainActivity, 2)
+      layoutManager = androidx.recyclerview.widget.GridLayoutManager(this@MainActivity, 2)
       adapter = groupAdapter
     }
 

@@ -3,12 +3,12 @@ package com.ouattararomuald.slider
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
-import android.support.constraint.ConstraintLayout
-import android.support.design.widget.TabLayout
-import android.support.v4.view.ViewCompat
-import android.support.v4.view.ViewPager
-import android.support.v7.content.res.AppCompatResources
-import android.support.v7.widget.AppCompatTextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.google.android.material.tabs.TabLayout
+import androidx.core.view.ViewCompat
+import androidx.viewpager.widget.ViewPager
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.widget.AppCompatTextView
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -33,7 +33,7 @@ class ImageSlider : ConstraintLayout {
     private const val DEFAULT_PERIOD = 5000L
   }
 
-  private val viewPager: ViewPager
+  private val viewPager: androidx.viewpager.widget.ViewPager
   private val indicator: TabLayout
   private val descriptionLayout: LinearLayout
   private val descriptionTextView: AppCompatTextView
@@ -59,7 +59,7 @@ class ImageSlider : ConstraintLayout {
 
   private val loopHandler: LoopHandler
 
-  private var onPageChangeListener = object : ViewPager.OnPageChangeListener {
+  private var onPageChangeListener = object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
     override fun onPageScrollStateChanged(state: Int) {
     }
 
@@ -86,7 +86,7 @@ class ImageSlider : ConstraintLayout {
   }
 
   /** Page transformer representing the animation you want to apply to each slide transition. */
-  var pageTransformer: ViewPager.PageTransformer? = null
+  var pageTransformer: androidx.viewpager.widget.ViewPager.PageTransformer? = null
     set(value) {
       field = value
       if (field != null) {
@@ -268,7 +268,7 @@ class ImageSlider : ConstraintLayout {
    *
    * @param pageChangeListener Listener to add.
    */
-  fun addOnPageChangeListener(pageChangeListener: ViewPager.OnPageChangeListener) {
+  fun addOnPageChangeListener(pageChangeListener: androidx.viewpager.widget.ViewPager.OnPageChangeListener) {
     viewPager.addOnPageChangeListener(pageChangeListener)
   }
 
@@ -277,7 +277,7 @@ class ImageSlider : ConstraintLayout {
    *
    * @param pageChangeListener Listener to remove.
    */
-  fun removeOnPageChangeListener(pageChangeListener: ViewPager.OnPageChangeListener) {
+  fun removeOnPageChangeListener(pageChangeListener: androidx.viewpager.widget.ViewPager.OnPageChangeListener) {
     viewPager.removeOnPageChangeListener(pageChangeListener)
   }
 

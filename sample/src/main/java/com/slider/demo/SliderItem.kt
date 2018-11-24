@@ -1,6 +1,6 @@
 package com.slider.demo
 
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 import com.ouattararomuald.slider.PicassoImageLoaderFactory
 import com.ouattararomuald.slider.SliderAdapter
 import com.xwray.groupie.kotlinandroidextensions.Item
@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.slider_item.slider
 
 internal class SliderItem(
   private val imageUrls: Array<String>,
-  private val pageTransformer: ViewPager.PageTransformer
+  private val pageTransformer: androidx.viewpager.widget.ViewPager.PageTransformer
 ) : Item() {
 
   override fun bind(viewHolder: ViewHolder, position: Int) {

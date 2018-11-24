@@ -12,7 +12,7 @@ android {
     versionCode 1
     versionName "1.0"
 
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
 
   lintOptions {
@@ -38,18 +38,18 @@ dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation deps.kotlin.stdlib.jdk7
 
-  implementation deps.android.support.annotations
-  implementation deps.android.support.appcompatV7
-  implementation deps.android.support.constraintLayout
-  implementation deps.android.support.design
-  implementation deps.android.support.exifinterface
+  implementation deps.androidx.annotations
+  implementation deps.androidx.appcompat
+  implementation deps.androidx.constraintLayout
+  implementation deps.androidx.material
+  implementation deps.androidx.exifinterface
 
   api deps.picasso
 
   testImplementation deps.junit
 
-  androidTestImplementation deps.android.support.test.runner
-  androidTestImplementation deps.android.support.test.espresso.core
+  androidTestImplementation deps.androidx.test.runner
+  androidTestImplementation deps.androidx.test.espresso.core
   androidTestImplementation deps.truth
 }
 
