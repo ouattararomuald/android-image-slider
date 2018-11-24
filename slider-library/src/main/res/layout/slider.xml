@@ -7,6 +7,7 @@
 >
   <androidx.viewpager.widget.ViewPager
       android:id="@+id/view_pager"
+      app:layout_constraintTop_toTopOf="parent"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
   />

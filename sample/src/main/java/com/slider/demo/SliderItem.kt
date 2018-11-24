@@ -9,12 +9,15 @@ import kotlinx.android.synthetic.main.slider_item.slider
 
 internal class SliderItem(
   private val imageUrls: Array<String>,
-  private val pageTransformer: androidx.viewpager.widget.ViewPager.PageTransformer
+  private val pageTransformer: ViewPager.PageTransformer
 ) : Item() {
 
   override fun bind(viewHolder: ViewHolder, position: Int) {
     viewHolder.slider.adapter = SliderAdapter(viewHolder.slider.context,
-        PicassoImageLoaderFactory(),
+        PicassoImageLoaderFactory(
+            errorResId = R.drawable.ic_error,
+            placeholderResId = R.drawable.ic_placeholder
+        ),
         imageUrls = imageUrls.toList(),
         descriptions = Data.generateDescriptions(imageUrls.size)
     )
