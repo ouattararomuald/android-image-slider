@@ -10,7 +10,7 @@ import com.xwray.groupie.ViewHolder
 
 class MainActivity : AppCompatActivity() {
 
-  private lateinit var recyclerView: androidx.recyclerview.widget.RecyclerView
+  private lateinit var recyclerView: RecyclerView
   private val groupAdapter = GroupAdapter<ViewHolder>()
   private val slidersSection = Section()
 
@@ -22,12 +22,12 @@ class MainActivity : AppCompatActivity() {
 
     recyclerView = findViewById(R.id.recycler_view)
     recyclerView.apply {
-      layoutManager = androidx.recyclerview.widget.GridLayoutManager(this@MainActivity, 2)
+      layoutManager = GridLayoutManager(this@MainActivity, 2)
       adapter = groupAdapter
     }
 
     Data.URLS.keys.forEach { pageTransformer ->
-      slidersSection.add(SliderItem(Data.URLS[pageTransformer]!!, pageTransformer))
+      slidersSection.add(SliderItem(Data.URLS[pageTransformer]!!.toTypedArray(), pageTransformer))
     }
   }
 }

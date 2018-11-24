@@ -9,9 +9,9 @@ import java.util.TimerTask
  *
  * Once the task is started, it will run periodically until it is stopped.
  *
- * @param delayInMillis Delay in milliseconds before task is to be executed.
- * @param periodInMillis Time in milliseconds between successive task executions.
- * @param onLoop Invoked during task execution.
+ * @property delayInMillis Delay in milliseconds before task is to be executed.
+ * @property periodInMillis Time in milliseconds between successive task executions.
+ * @property onLoop Invoked during task execution.
  */
 internal class LoopHandler(
   private val delayInMillis: Long,

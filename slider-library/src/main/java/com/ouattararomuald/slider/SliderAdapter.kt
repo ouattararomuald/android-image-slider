@@ -1,28 +1,29 @@
 package com.ouattararomuald.slider
 
 import android.content.Context
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager.widget.ViewPager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 
 /**
  * Adapter to create a slider.
  *
  * The slider will have the given number of slides.
  *
- * @param imageLoaderFactory Image loader factory.
- * @param imageUrls Urls of images to display.
- * @param descriptions Images descriptions.
+ * @property context Context.
+ * @property imageLoaderFactory image loader factory.
+ * @property imageUrls urls of images to display.
+ * @property descriptions images descriptions.
  */
 class SliderAdapter(
   private val context: Context,
-  imageLoaderFactory: ImageLoader.Factory<*>,
+  private val imageLoaderFactory: ImageLoader.Factory<*>,
   val imageUrls: List<String>,
   val descriptions: List<String> = emptyList()
-) : androidx.viewpager.widget.PagerAdapter() {
+) : PagerAdapter() {
 
   private val imageLoader: ImageLoader
 
@@ -55,14 +56,14 @@ class SliderAdapter(
     val slideImageView = view.findViewById(R.id.image) as ImageView
     imageLoader.load(imageUrls[position], slideImageView)
 
-    val viewPager = container as androidx.viewpager.widget.ViewPager
+    val viewPager = container as ViewPager
     viewPager.addView(view, 0)
 
     return view
   }
 
   override fun destroyItem(container: ViewGroup, position: Int, obj: Any) {
-    val viewPager = container as androidx.viewpager.widget.ViewPager
+    val viewPager = container as ViewPager
     val view = obj as View
     viewPager.removeView(view)
   }

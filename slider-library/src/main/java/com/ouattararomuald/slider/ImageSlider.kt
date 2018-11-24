@@ -59,7 +59,7 @@ class ImageSlider : ConstraintLayout {
 
   private val loopHandler: LoopHandler
 
-  private var onPageChangeListener = object : androidx.viewpager.widget.ViewPager.OnPageChangeListener {
+  private var onPageChangeListener = object : ViewPager.OnPageChangeListener {
     override fun onPageScrollStateChanged(state: Int) {
     }
 
@@ -86,7 +86,7 @@ class ImageSlider : ConstraintLayout {
   }
 
   /** Page transformer representing the animation you want to apply to each slide transition. */
-  var pageTransformer: androidx.viewpager.widget.ViewPager.PageTransformer? = null
+  var pageTransformer: ViewPager.PageTransformer? = null
     set(value) {
       field = value
       if (field != null) {
@@ -268,7 +268,7 @@ class ImageSlider : ConstraintLayout {
    *
    * @param pageChangeListener Listener to add.
    */
-  fun addOnPageChangeListener(pageChangeListener: androidx.viewpager.widget.ViewPager.OnPageChangeListener) {
+  fun addOnPageChangeListener(pageChangeListener: ViewPager.OnPageChangeListener) {
     viewPager.addOnPageChangeListener(pageChangeListener)
   }
 
@@ -277,7 +277,7 @@ class ImageSlider : ConstraintLayout {
    *
    * @param pageChangeListener Listener to remove.
    */
-  fun removeOnPageChangeListener(pageChangeListener: androidx.viewpager.widget.ViewPager.OnPageChangeListener) {
+  fun removeOnPageChangeListener(pageChangeListener: ViewPager.OnPageChangeListener) {
     viewPager.removeOnPageChangeListener(pageChangeListener)
   }
 
