@@ -12,7 +12,6 @@ jobs:
 
     environment:
       JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64
-      ANDROID_HOME: /usr/local/android-sdk-linux
       TERM: dumb
 
     steps:
