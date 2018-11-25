@@ -5,7 +5,7 @@ import miaoyongjun.pagetransformer.TransitionEffect
 
 internal class Data private constructor() {
   companion object {
-    private const val BASE = "http://i.imgur.com/"
+    private const val BASE = "https://i.imgur.com/"
     private const val EXT = ".jpg"
     val URLS = mapOf(
         MagicTransformer.getPageTransformer(TransitionEffect.Accordion) to arrayOf(
