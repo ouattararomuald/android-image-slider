@@ -2,122 +2,187 @@
 layout: default
 ---
 
-Text can be **bold**, _italic_, or ~~strikethrough~~.
+# Introduction
 
-[Link to another page](./another-page.html).
+Create a simple slider with the following code:
 
-There should be whitespace between paragraphs.
+**activity_main.xml**
+```xml
+<com.ouattararomuald.slider.ImageSlider
+    android:id="@+id/image_slider"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+/>
+```
 
-There should be whitespace between paragraphs. We recommend including a README, or a file with information about your project.
+**MainActivity.kt**
+```kotlin
+class MainActivity : AppCompatActivity() {
+  
+  companion object {
+    private const val SLIDE_NUMBER = 10
+  }
 
-# Header 1
+  private lateinit var imageSlider: ImageSlider
+  private val imageUrls = arrayListOf(
+    "http://i.imgur.com/CqmBjo5.jpg", 
+    "http://i.imgur.com/zkaAooq.jpg", 
+    "http://i.imgur.com/0gqnEaY.jpg"
+  )
 
-This is a normal paragraph following a header. GitHub is a code hosting platform for version control and collaboration. It lets you and others work together on projects from anywhere.
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
 
-## Header 2
-
-> This is a blockquote following a header.
->
-> When something is important enough, you do it even if the odds are not in your favor.
-
-### Header 3
-
-```js
-// Javascript code with syntax highlighting.
-var fun = function lang(l) {
-  dateformat.i18n = require('./lang/' + l)
-  return true;
+    imageSlider = findViewById(R.id.image_slider)
+    imageSlider.adapter = SliderAdapter(
+      this,
+      PicassoImageLoaderFactory(),
+      imageUrls = imageUrls,
+      descriptions = Data.generateDescriptions(imageUrls.size)
+    )
+  }
 }
 ```
 
-```ruby
-# Ruby code with syntax highlighting
-GitHubPages::Dependencies.gems.each do |gem, version|
-  s.add_dependency(gem, "= #{version}")
-end
+## Image Loader
+
+`Slider` comes with Picasso as dependency to load an Images. If you want to use another library, all you need is to extends `ImageLoader#Factory` and pass your factory to `SliderAdapter.
+
+You can take a look at the `PicassoImageLoaderFactory` implementation below.
+
+**PicassoImageLoader**
+```kotlin
+class PicassoImageLoader(
+  @DrawableRes private val errorResId: Int,
+  @DrawableRes private val placeholderResId: Int
+) : ImageLoader {
+
+  override fun load(path: String, imageView: ImageView) {
+    Picasso.get().load(path).apply {
+      if (placeholderResId > 0) {
+        placeholder(placeholderResId)
+      }
+      if (errorResId > 0) {
+        error(errorResId)
+      }
+      fit()
+      into(imageView)
+    }
+  }
+}
 ```
 
-#### Header 4
+**PicassoImageLoaderFactory**
+```kotlin
+class PicassoImageLoaderFactory(
+  @DrawableRes private val errorResId: Int = 0,
+  @DrawableRes private val placeholderResId: Int = 0
+) : ImageLoader.Factory<PicassoImageLoader>() {
 
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-*   This is an unordered list following a header.
-
-##### Header 5
-
-1.  This is an ordered list following a header.
-2.  This is an ordered list following a header.
-3.  This is an ordered list following a header.
-
-###### Header 6
-
-| head1        | head two          | three |
-|:-------------|:------------------|:------|
-| ok           | good swedish fish | nice  |
-| out of stock | good and plenty   | nice  |
-| ok           | good `oreos`      | hmm   |
-| ok           | good `zoute` drop | yumm  |
-
-### There's a horizontal rule below this.
-
-* * *
-
-### Here is an unordered list:
-
-*   Item foo
-*   Item bar
-*   Item baz
-*   Item zip
-
-### And an ordered list:
-
-1.  Item one
-1.  Item two
-1.  Item three
-1.  Item four
-
-### And a nested list:
-
-- level 1 item
-  - level 2 item
-  - level 2 item
-    - level 3 item
-    - level 3 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-  - level 2 item
-  - level 2 item
-- level 1 item
-
-### Small image
-
-![Octocat](https://assets-cdn.github.com/images/icons/emoji/octocat.png)
-
-### Large image
-
-![Branching](https://guides.github.com/activities/hello-world/branching.png)
-
-
-### Definition lists can be used with HTML syntax.
-
-<dl>
-<dt>Name</dt>
-<dd>Godzilla</dd>
-<dt>Born</dt>
-<dd>1952</dd>
-<dt>Birthplace</dt>
-<dd>Japan</dd>
-<dt>Color</dt>
-<dd>Green</dd>
-</dl>
-
-```
-Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
+  override fun create(): PicassoImageLoader = PicassoImageLoader(errorResId, placeholderResId)
+}
 ```
 
+## Animations
+
+A slider needs animations between each transition. To create a transition, you need is to implement `ViewPager.PageTransformer` and pass it to `ImageSlider#pageTransformer` just like in the image below:
+
+```kotlin
+class MainActivity : AppCompatActivity() {
+  
+  companion object {
+    private const val SLIDE_NUMBER = 10
+  }
+
+  private lateinit var imageSlider: ImageSlider
+  private val imageUrls = arrayListOf(
+    "http://i.imgur.com/CqmBjo5.jpg", 
+    "http://i.imgur.com/zkaAooq.jpg", 
+    "http://i.imgur.com/0gqnEaY.jpg"
+  )
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContentView(R.layout.activity_main)
+
+    imageSlider = findViewById(R.id.image_slider)
+    imageSlider.adapter = SliderAdapter(
+      this,
+      PicassoImageLoaderFactory(),
+      imageUrls = imageUrls,
+      descriptions = Data.generateDescriptions(imageUrls.size)
+    )
+    imageSlider.pageTransformer = MyPageTransformer() // Custom Page Transformer
+  }
+}
 ```
-The final element.
+
+## Available XML Attributes
+
+| Attributes                   |  Description                |
+|:---------------------------  | :---------------------------|
+| **autoRecoverAfterTouchEvent**   |  ```Determines whether or not the ImageSlider should recover after user touch event.```  |
+| **indicatorBackground**          |  ```Reference to a background to be applied to Slider's indicator.```   |
+| **initialSlideDelay**            |  ```Delay in milliseconds before the first slide change.```      |
+| **initWithAutoCycling**          |  ```Determines whether or not the ImageSlider should immediately starts its transitions.``` |
+| **sliderBackground**             |  ```Reference to a background to be applied to Slider.``` |
+| **slideTransitionInterval**      |  ```Time in milliseconds between successive slide changes.``` |
+
+## Download
+
+Download the [lastest AAR](https://search.maven.org/) or grab via Gradle:
+
+```groovy
+implementation 'com.ouattararomuald:slider:1.0.0'
+```
+
+or Maven:
+
+```xml
+<dependency>
+  <groupId>com.ouattararomuald</groupId>
+  <artifactId>slider</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+Snapshots of the development version are available in [Sonatype's snapshots repository](https://oss.sonatype.org/content/repositories/snapshots/).
+
+## Contributing
+
+Contributions you say? Yes please!
+
+**Bug report?**
+
+If at all possible, please attach a minimal sample project or code which reproduces the bug. Screenshots are also a huge help if the problem is visual.
+
+**Send a pull request!**
+
+If you're fixing a bug, please add a failing test or code that can reproduce the issue.
+
+**Build steps**
+
+1. Build artifacts with `./gradlew assemble`
+1. Run Tests `./gradlew test`
+1. Run Instrumented Test `./gradlew :sample:connectedAndroidTest`
+1. Run Android Lint `./gradlew lint`
+1. Run Kotlin Lint `./gradlew detektCheck`
+
+### License
+
+```
+Copyright 2018 Ouattara Gninlikpoho Romuald
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 ```

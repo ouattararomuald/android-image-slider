@@ -10,15 +10,14 @@
 
 # Site settings
 title: Android Image Slider
-description: >- # this means to ignore newlines until "baseurl:"
-  An image slider for android that let you pick the image loader library that best suits your needs.
-show_downloads: "true"
+description: An image slider for android that let you pick the image loader library that best suits your needs.
+show_downloads: true
 
 # Theme configurations
-repository: ouattararomuald/ouattararomuald.github.io
+repository: ouattararomuald/android-image-slider
 github:
-  is_project_page: "true"
-  repository_name: "android-image-slider"
+  is_project_page: true
+  repository_name: android-image-slider
   source_zip_url: https://github.com/ouattararomuald/android-image-slider/archive/master.zip
   another_url: another value
 maven:
