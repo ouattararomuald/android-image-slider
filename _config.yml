@@ -17,6 +17,8 @@ show_downloads: "true"
 # Theme configurations
 repository: ouattararomuald/ouattararomuald.github.io
 github:
+  is_project_page: "true"
+  repository_name: "android-image-slider"
   zip_url: http://example.com/download.zip
   another_url: another value
 
