@@ -19,7 +19,7 @@ repository: ouattararomuald/ouattararomuald.github.io
 github:
   is_project_page: "true"
   repository_name: "android-image-slider"
-  zip_url: http://example.com/download.zip
+  zip_url: https://github.com/ouattararomuald/android-image-slider/archive/master.zip
   another_url: another value
 
 # Build settings
