@@ -18,11 +18,13 @@ show_downloads: "true"
 repository: ouattararomuald/ouattararomuald.github.io
 github:
   is_project_page: "true"
-  project_name: slider
-  project_version: 1.0.0
   repository_name: "android-image-slider"
   source_zip_url: https://github.com/ouattararomuald/android-image-slider/archive/master.zip
   another_url: another value
+
+maven:
+  project_name: slider
+  artifact_version: 1.0.0
 
 # Build settings
 markdown: kramdown
