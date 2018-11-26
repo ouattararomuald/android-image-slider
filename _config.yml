@@ -18,8 +18,10 @@ show_downloads: "true"
 repository: ouattararomuald/ouattararomuald.github.io
 github:
   is_project_page: "true"
+  library_name: "slider"
+  library_version: "1.0.0"
   repository_name: "android-image-slider"
-  zip_url: https://github.com/ouattararomuald/android-image-slider/archive/master.zip
+  source_zip_url: https://github.com/ouattararomuald/android-image-slider/archive/master.zip
   another_url: another value
 
 # Build settings
