@@ -50,12 +50,12 @@ class MainActivity : AppCompatActivity() {
 ```
 
 `Slider` comes with Picasso as dependency to load images. If you want to use another library,
-all you need is to extends `ImageLoader#Factory` and pass your factory to `SliderAdapter`.
+you need to extends `ImageLoader#Factory` and pass your factory to `SliderAdapter`.
 
 
 ## Animations
 
-A slider needs animations between each transition. To create a transition, you need is to implement `ViewPager.PageTransformer` and pass it to `ImageSlider#pageTransformer`:
+A slider needs animations between each transition. To create a transition, you must implement `ViewPager.PageTransformer` and pass it to `ImageSlider#pageTransformer`:
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
