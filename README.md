@@ -55,7 +55,7 @@ all you need is to extends `ImageLoader#Factory` and pass your factory to `Slide
 
 ## Animations
 
-A slider needs animations between each transition. To create a transition, all you need is to implement `ViewPager.PageTransformer` and pass it to `ImageSlider#pageTransformer`:
+A slider needs animations between each transition. To create a transition, you need is to implement `ViewPager.PageTransformer` and pass it to `ImageSlider#pageTransformer`:
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
