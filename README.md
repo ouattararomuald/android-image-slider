@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-`Slider` comes with Picasso as dependency to load an Images. If you want to use another library,
+`Slider` comes with Picasso as dependency to load images. If you want to use another library,
 all you need is to extends `ImageLoader#Factory` and pass your factory to `SliderAdapter`.
 
 
