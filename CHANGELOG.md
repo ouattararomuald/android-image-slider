@@ -1,7 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [Unreleased]
+## [1.0.1]
+
+- Use *AndroidX*
+- Hide description layout when image description is empty
 
 ## [1.0.0]
 
