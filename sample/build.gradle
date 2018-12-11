@@ -37,7 +37,8 @@ androidExtensions {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation deps.kotlin.stdlib.jdk7
-  implementation project(':slider-library')
+  implementation project(':glide-loader')
+  implementation project(':picasso-loader')
 
   implementation deps.androidx.appcompat
   implementation deps.androidx.constraintLayout
@@ -49,6 +50,9 @@ dependencies {
   implementation deps.groupie.kotlinExtensions
 
   implementation deps.picasso
+
+  api deps.glide.runtime
+  kapt deps.glide.compiler
 
   implementation deps.pageTransformer
 

@@ -1,17 +1,14 @@
-package com.ouattararomuald.slider
+package com.ouattararomuald.slider.loaders.picasso
 
 import android.content.Context
 import android.os.Handler
-import androidx.test.InstrumentationRegistry
-import androidx.test.runner.AndroidJUnit4
 import android.widget.ImageView
+import androidx.test.platform.app.InstrumentationRegistry
 import com.google.common.truth.Truth.assertThat
 import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
 
-@RunWith(AndroidJUnit4::class)
 class PicassoImageLoaderTest {
 
   private lateinit var appContext: Context
@@ -19,7 +16,7 @@ class PicassoImageLoaderTest {
 
   @Before
   fun setUp() {
-    appContext = InstrumentationRegistry.getTargetContext()
+    appContext = InstrumentationRegistry.getInstrumentation().context
     imageView = ImageView(appContext)
   }
 

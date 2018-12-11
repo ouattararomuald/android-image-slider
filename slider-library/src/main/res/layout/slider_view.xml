@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<ImageButton
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/image"
+    android:background="@android:color/transparent"
+    android:contentDescription="@string/image_content_description"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
->
-  <ImageButton
-      android:id="@+id/image"
-      android:contentDescription="@string/image_content_description"
-      android:layout_width="match_parent"
-      android:layout_height="match_parent"
-  />
-</FrameLayout>
+/>

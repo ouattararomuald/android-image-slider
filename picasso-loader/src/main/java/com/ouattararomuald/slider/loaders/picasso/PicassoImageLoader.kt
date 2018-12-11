@@ -1,7 +1,8 @@
-package com.ouattararomuald.slider
+package com.ouattararomuald.slider.loaders.picasso
 
-import androidx.annotation.DrawableRes
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
+import com.ouattararomuald.slider.ImageLoader
 import com.squareup.picasso.Picasso
 
 /**
