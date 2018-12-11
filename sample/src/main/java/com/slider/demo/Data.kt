@@ -71,11 +71,11 @@ internal class Data private constructor() {
         ).toImageUrls()
     )
 
-    fun generateDescriptions(number: Int = 1): ArrayList<String> {
+    fun generateDescriptions(source: String, number: Int = 1): ArrayList<String> {
       val descriptions: ArrayList<String> = ArrayList(number)
 
       (1..number).forEach {
-        descriptions.add("Description $it")
+        descriptions.add("$source image  $it")
       }
 
       return descriptions

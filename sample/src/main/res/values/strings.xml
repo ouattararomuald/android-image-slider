@@ -1,3 +1,7 @@
 <resources>
   <string name="app_name">Slider</string>
+
+  <string name="menu_fresco">Fresco</string>
+  <string name="menu_glide">Glide</string>
+  <string name="menu_picasso">Picasso</string>
 </resources>

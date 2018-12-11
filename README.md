@@ -106,18 +106,47 @@ slideTransitionInterval | Time in milliseconds between successive slide changes.
 Download the [latest AAR](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.ouattararomuald%22%20AND%20a%3A%22slider%22) or grab via Gradle:
 
 ```gradle
+implementation 'com.ouattararomuald:slider-glide:1.0.0' // If you use Glide
+implementation 'com.ouattararomuald:slider-picasso:1.0.0' // If you use Picasso
+```
+
+If you want to use another image loading library include:
+
+```gradle
 implementation 'com.ouattararomuald:slider:1.0.0'
 ```
+
+and create you custom `ImageLoader` by implementing `ImageLoader#Factory` (see `glide-loader` or `picasso-loader`).
 
 or Maven:
 
 ```xml
+<!-- If you use Glide -->
+<dependency>
+  <groupId>com.ouattararomuald</groupId>
+  <artifactId>slider-glide</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+```xml
+<!-- If you use Picasso -->
+<dependency>
+  <groupId>com.ouattararomuald</groupId>
+  <artifactId>slider-picasso</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+```xml
+<!-- If you want a custom image loader -->
 <dependency>
   <groupId>com.ouattararomuald</groupId>
   <artifactId>slider</artifactId>
   <version>1.0.0</version>
 </dependency>
 ```
+
 Snapshots of the development version are available in [Sonatype's snapshots repository](https://oss.sonatype.org/content/repositories/snapshots/).
 
 ## Contributing
