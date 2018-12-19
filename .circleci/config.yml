@@ -61,11 +61,9 @@ jobs:
               cd out
               git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
               git rm -rf .
-              cd ../slider-library/build/documentation
 
-              cp -a slider-library/. out/.
+              cp -a slider-library/build/documentation/slider-library/. out/.
 
-              mkdir -p out/.circleci && cp -a .circleci/. out/.circleci/.
               cd out
 
               git add -A
