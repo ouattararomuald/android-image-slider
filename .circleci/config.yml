@@ -58,7 +58,7 @@ jobs:
               cd out
               ls -lR ..
 
-              cp -a slider-library/build/documentation/slider-library/. out/.
+              cp -a ../slider-library/build/documentation/slider-library/. out/.
 
               cd out
 
