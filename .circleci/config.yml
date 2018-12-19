@@ -52,7 +52,7 @@ jobs:
       - deploy:
           name: Deploy
           command: |
-            if [ $CIRCLE_BRANCH == "rouattara/external-image-loader" ]; then
+            if [ $CIRCLE_BRANCH == "master" ]; then
               git config --global user.email $GH_EMAIL
               git config --global user.name $GH_NAME
 
