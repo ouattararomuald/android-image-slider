@@ -56,11 +56,8 @@ jobs:
               git clone --single-branch --branch $TARGET_BRANCH $CIRCLE_REPOSITORY_URL out
 
               cd out
-              ls -lR ../slider-library
 
-              cp -a ../slider-library/build/documentation/slider-library/. out/.
-
-              cd out
+              cp -R ../slider-library/build/documentation/slider-library out/slider-library
 
               git add -A
               git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
