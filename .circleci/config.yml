@@ -1,3 +1,4 @@
+# Configure deployment of javadoc to gh-pages based on : https://blog.frederikring.com/articles/deploying-github-pages-circle-ci/
 version: 2.0
 
 cache_key: &cache_key
@@ -8,74 +9,74 @@ jobs:
     working_directory: ~/android-image-slider
 
     docker:
-      - image: circleci/android:api-28-node8-alpha
+    - image: circleci/android:api-28-node8-alpha
 
     environment:
       JAVA_HOME: /usr/lib/jvm/java-8-openjdk-amd64
       TERM: dumb
 
     steps:
-      - checkout
+    - checkout
 
-      - restore_cache:
-          <<: *cache_key
+    - restore_cache:
+        <<: *cache_key
 
-      - run:
-          name: Assemble
-          command: ./gradlew assemble
-      - store_artifacts:
-          path: sample/build/outputs/
-      - store_artifacts:
-          path: build/commit-timestamp.txt
+    - run:
+        name: Assemble
+        command: ./gradlew assemble
+    - store_artifacts:
+        path: sample/build/outputs/
+    - store_artifacts:
+        path: build/commit-timestamp.txt
 
-      - run:
-          name: Test
-          command: |
-            ./gradlew test
-            mkdir -p ~/junit/
-            find . -type f -regex ".*/build/test-results/.*xml" -exec cp --parents {} ~/junit/ \;
-      - store_test_results:
-          path: ~/junit
-      - store_artifacts:
-          path: ~/junit
+    - run:
+        name: Test
+        command: |
+          ./gradlew test
+          mkdir -p ~/junit/
+          find . -type f -regex ".*/build/test-results/.*xml" -exec cp --parents {} ~/junit/ \;
+    - store_test_results:
+        path: ~/junit
+    - store_artifacts:
+        path: ~/junit
 
-      - run:
-          name: Android Lint
-          command: ./gradlew lint
-      - store_artifacts:
-          path: sample/build/reports/lint-results.html
+    - run:
+        name: Android Lint
+        command: ./gradlew lint
+    - store_artifacts:
+        path: sample/build/reports/lint-results.html
 
-      - run:
-          name: Kotlin Lint
-          command: ./gradlew detektCheck
+    - run:
+        name: Kotlin Lint
+        command: ./gradlew detektCheck
 
-      - deploy:
-          name: Deploy
-          command: |
-            if [ $CIRCLE_BRANCH == "master" ]; then
-              git config --global user.email $GH_EMAIL
-              git config --global user.name $GH_NAME
+    - deploy:
+        name: Deploy
+        command: |
+          if [ $CIRCLE_BRANCH == "master" ]; then
+            git config --global user.email $GH_EMAIL
+            git config --global user.name $GH_NAME
 
-              git clone --single-branch --branch $TARGET_BRANCH $CIRCLE_REPOSITORY_URL out
+            git clone --single-branch --branch $TARGET_BRANCH $CIRCLE_REPOSITORY_URL out
 
-              cd out
+            cd out
 
-              cp -R ../slider-library/build/documentation/slider-library ./
+            cp -R ../slider-library/build/documentation/slider-library ./
 
-              git add -A
-              git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+            git add -A
+            git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
 
-              git push origin $TARGET_BRANCH
-            fi
+            git push origin $TARGET_BRANCH
+          fi
 
-      - save_cache:
-          <<: *cache_key
-          paths:
-            - ~/.gradle/caches
-            - ~/.gradle/wrapper
+    - save_cache:
+        <<: *cache_key
+        paths:
+        - ~/.gradle/caches
+        - ~/.gradle/wrapper
 
 workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+    - build
