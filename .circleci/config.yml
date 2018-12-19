@@ -62,14 +62,14 @@ jobs:
               git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
               git rm -rf .
 
-              cp -a slider-library/build/documentation/slider-library/. out/.
+              #cp -a slider-library/build/documentation/slider-library/. out/.
 
-              cd out
+              #cd out
 
-              git add -A
-              git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
+              #git add -A
+              #git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
 
-              git push origin $TARGET_BRANCH
+              #git push origin $TARGET_BRANCH
             fi
 
       - save_cache:
