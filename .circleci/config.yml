@@ -56,8 +56,7 @@ jobs:
               git clone --single-branch --branch $TARGET_BRANCH $CIRCLE_REPOSITORY_URL out
 
               cd out
-              git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
-              git rm -rf .
+              pwd
 
               cp -a slider-library/build/documentation/slider-library/. out/.
 
