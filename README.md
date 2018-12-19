@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/ouattararomuald/android-image-slider.svg?style=svg)](https://circleci.com/gh/ouattararomuald/android-image-slider)
+[![](https://img.shields.io/maven-central/v/com.ouattararomuald/slider.svg)](https://search.maven.org/search?q=g:com.ouattararomuald%20a:slider)
 
 # Image Slider
 
