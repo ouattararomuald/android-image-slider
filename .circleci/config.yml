@@ -54,7 +54,7 @@ jobs:
           command: |
             if [ $CIRCLE_BRANCH == "rouattara/external-image-loader" ]; then
               mkdir out
-              git clone --single-branch --branch $TARGET_BRANCH $CIRCLE_REPOSITORY_URL out
+              git clone --single-branch --branch $TARGET_BRANCH $CIRCLE_REPOSITORY_URL
 
               cd out
               git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
