@@ -53,7 +53,7 @@ jobs:
           name: Deploy
           command: |
             if [ $CIRCLE_BRANCH == "rouattara/external-image-loader" ]; then
-              git clone --single-branch --branch $TARGET_BRANCH https://github.com/ouattararomuald/android-image-slider.git out
+              git clone --single-branch --branch $TARGET_BRANCH $CIRCLE_REPOSITORY_URL out
 
               cd out
               git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
