@@ -35,3 +35,5 @@ dependencies {
   androidTestImplementation deps.androidx.test.espresso.core
   androidTestImplementation deps.truth
 }
+
+apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
