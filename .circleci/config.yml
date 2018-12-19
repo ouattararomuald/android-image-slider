@@ -57,7 +57,7 @@ jobs:
 
               cd out
 
-              cp -R ../slider-library/build/documentation/slider-library out/slider-library
+              cp -R ../slider-library/build/documentation/slider-library ./
 
               git add -A
               git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
