@@ -53,9 +53,7 @@ jobs:
           name: Deploy
           command: |
             if [ $CIRCLE_BRANCH == "rouattara/external-image-loader" ]; then
-              git clone $CIRCLE_REPOSITORY_URL out
-              git fetch origin $TARGET_BRANCH
-              git checkout -b $TARGET_BRANCH
+              git clone --single-branch --branch $TARGET_BRANCH $CIRCLE_REPOSITORY_URL out
 
               cd out
               git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
@@ -69,7 +67,6 @@ jobs:
               git commit -m "Automated deployment to GitHub Pages: ${CIRCLE_SHA1}" --allow-empty
 
               git push origin $TARGET_BRANCH
-              git checkout $CIRCLE_BRANCH
             fi
 
       - save_cache:
