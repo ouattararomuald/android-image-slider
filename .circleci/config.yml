@@ -53,8 +53,7 @@ jobs:
           name: Deploy
           command: |
             if [ $CIRCLE_BRANCH == "rouattara/external-image-loader" ]; then
-              git clone $CIRCLE_REPOSITORY_URL out
-              git fetch
+              git clone --branch $TARGET_BRANCH --single-branch $CIRCLE_REPOSITORY_URL out
 
               cd out
               git checkout $TARGET_BRANCH || git checkout --orphan $TARGET_BRANCH
