@@ -18,9 +18,6 @@ internal class SliderItem(
 
   private var imageSlider: ImageSlider? = null
 
-  val visibilityStatus: String
-    get() = "isDescriptionVisible: ${imageSlider?.isDescriptionVisible}"
-
   override fun bind(viewHolder: ViewHolder, position: Int) {
     imageSlider = viewHolder.slider
     viewHolder.slider.adapter = SliderAdapter(viewHolder.slider.context,
@@ -39,14 +36,6 @@ internal class SliderItem(
 
   fun hidePageIndicator() {
     imageSlider?.isPageIndicatorVisible = false
-  }
-
-  fun showDescriptions() {
-    imageSlider?.isDescriptionVisible = true
-  }
-
-  fun hideDescriptions() {
-    imageSlider?.isDescriptionVisible = false
   }
 
   private fun getImageLoader(): ImageLoader.Factory<out ImageLoader> {
