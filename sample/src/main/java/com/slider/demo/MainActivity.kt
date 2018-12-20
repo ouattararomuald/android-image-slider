@@ -1,7 +1,6 @@
 package com.slider.demo
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -53,11 +52,6 @@ class MainActivity : AppCompatActivity() {
       fillSection(item.itemId)
     } else if (item.itemId == R.id.menu_show_hide_indicators_item) {
       togglePageIndicatorsVisibility()
-    } else if (item.itemId == R.id.menu_show_hide_descriptions_item) {
-      togglePageDescriptionsVisibility()
-      sliderItems.forEach {
-        Log.d("VIS", it.visibilityStatus)
-      }
     }
     return true
   }
@@ -71,17 +65,6 @@ class MainActivity : AppCompatActivity() {
       }
     }
     pageIndicatorsVisible = !pageIndicatorsVisible
-  }
-
-  private fun togglePageDescriptionsVisibility() {
-    sliderItems.forEach {
-      if (pageDescriptionsVisible) {
-        it.hideDescriptions()
-      } else {
-        it.showDescriptions()
-      }
-    }
-    pageDescriptionsVisible = !pageDescriptionsVisible
   }
 
   private fun fillSection(menuId: Int) {

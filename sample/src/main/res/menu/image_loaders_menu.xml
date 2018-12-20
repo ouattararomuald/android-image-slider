@@ -12,8 +12,4 @@
   <item
       android:id="@+id/menu_show_hide_indicators_item"
       android:title="@string/show_hide_indicators"/>
-
-  <item
-      android:id="@+id/menu_show_hide_descriptions_item"
-      android:title="@string/show_hide_descriptions"/>
 </menu>
