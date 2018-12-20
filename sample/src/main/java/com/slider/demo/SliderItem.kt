@@ -2,6 +2,7 @@ package com.slider.demo
 
 import androidx.viewpager.widget.ViewPager
 import com.ouattararomuald.slider.ImageLoader
+import com.ouattararomuald.slider.ImageSlider
 import com.ouattararomuald.slider.SliderAdapter
 import com.ouattararomuald.slider.loaders.glide.GlideImageLoaderFactory
 import com.ouattararomuald.slider.loaders.picasso.PicassoImageLoaderFactory
@@ -15,7 +16,13 @@ internal class SliderItem(
   private val pageTransformer: ViewPager.PageTransformer
 ) : Item() {
 
+  private var imageSlider: ImageSlider? = null
+
+  val visibilityStatus: String
+    get() = "isDescriptionVisible: ${imageSlider?.isDescriptionVisible}"
+
   override fun bind(viewHolder: ViewHolder, position: Int) {
+    imageSlider = viewHolder.slider
     viewHolder.slider.adapter = SliderAdapter(viewHolder.slider.context,
         getImageLoader(),
         imageUrls = imageUrls.toList(),
@@ -25,6 +32,22 @@ internal class SliderItem(
   }
 
   override fun getLayout(): Int = R.layout.slider_item
+
+  fun showPageIndicator() {
+    imageSlider?.isPageIndicatorVisible = true
+  }
+
+  fun hidePageIndicator() {
+    imageSlider?.isPageIndicatorVisible = false
+  }
+
+  fun showDescriptions() {
+    imageSlider?.isDescriptionVisible = true
+  }
+
+  fun hideDescriptions() {
+    imageSlider?.isDescriptionVisible = false
+  }
 
   private fun getImageLoader(): ImageLoader.Factory<out ImageLoader> {
     return when (imageLoaderType) {

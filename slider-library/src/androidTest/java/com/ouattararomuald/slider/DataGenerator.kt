@@ -4,8 +4,8 @@ class DataGenerator private constructor() {
   companion object {
     fun generateTexts(quantity: Int): List<String> {
       val descriptions = mutableListOf<String>()
-      (1..quantity).forEach {
-        descriptions.add("Text $quantity")
+      for (i in 1..quantity) {
+        descriptions.add("Text $i")
       }
 
       return descriptions

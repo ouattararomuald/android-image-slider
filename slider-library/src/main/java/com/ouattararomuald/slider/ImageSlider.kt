@@ -3,19 +3,17 @@ package com.ouattararomuald.slider
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
-import androidx.constraintlayout.widget.ConstraintLayout
-import com.google.android.material.tabs.TabLayout
-import androidx.core.view.ViewCompat
-import androidx.viewpager.widget.ViewPager
-import androidx.appcompat.content.res.AppCompatResources
-import androidx.appcompat.widget.AppCompatTextView
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-import android.view.animation.Animation
-import android.widget.LinearLayout
+import androidx.appcompat.content.res.AppCompatResources
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.ViewCompat
+import androidx.core.view.isVisible
+import androidx.viewpager.widget.ViewPager
+import com.google.android.material.tabs.TabLayout
 
 /**
  * Layout manager that allows auto-flip left and right through images.
@@ -33,10 +31,8 @@ class ImageSlider : ConstraintLayout {
     private const val DEFAULT_PERIOD = 5000L
   }
 
-  private val viewPager: androidx.viewpager.widget.ViewPager
+  private val viewPager: ViewPager
   private val indicator: TabLayout
-  private val descriptionLayout: LinearLayout
-  private val descriptionTextView: AppCompatTextView
 
   private var sliderBackgroundResId: Int = 0
   private var indicatorBackgroundResId: Int = 0
@@ -58,20 +54,6 @@ class ImageSlider : ConstraintLayout {
   private var autoRecoverAfterTouchEvent = true
 
   private val loopHandler: LoopHandler
-
-  private var onPageChangeListener = object : ViewPager.OnPageChangeListener {
-    override fun onPageScrollStateChanged(state: Int) {
-    }
-
-    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-    }
-
-    override fun onPageSelected(position: Int) {
-      adapter?.let {
-        displayDescriptionIfAvailable(it)
-      }
-    }
-  }
 
   private val viewPagerTouchLister = OnTouchListener { _, event ->
     when (event.action) {
@@ -103,7 +85,6 @@ class ImageSlider : ConstraintLayout {
       if (value != null) {
         viewPager.adapter = field
 
-        displayDescriptionIfAvailable(field!!)
         setupIndicatorWithViewPagerIfNecessary()
 
         if (initWithAutoCycling) {
@@ -116,6 +97,11 @@ class ImageSlider : ConstraintLayout {
    * Sets the visibility of the page indicator.
    * The value must be one of [View.VISIBLE], [View.INVISIBLE] or [View.GONE]
    */
+  @Deprecated(
+      message = "Use isPageIndicatorVisible instead",
+      replaceWith = ReplaceWith("isPageIndicatorVisible"),
+      level = DeprecationLevel.WARNING
+  )
   var pageIndicatorVisibility: Int = View.VISIBLE
     set(value) {
       field = value
@@ -123,37 +109,26 @@ class ImageSlider : ConstraintLayout {
     }
 
   /**
-   * [Animation] used to animate the entrance of the description text.
+   * Returns true when the page indicator visibility is [View.VISIBLE], false otherwise.
    *
-   * Note that the exit animation will be played automatically at the end of the entrance animation.
-   * To avoid this set the [descriptionExitAnimation]  to `null`.
+   * ```
+   * if (view.isVisible) {
+   *     // Behavior...
+   * }
+   * ```
    *
-   * @see [descriptionExitAnimation]
+   * Setting this property to true sets the visibility to [View.VISIBLE], false to [View.GONE].
+   *
+   * ```
+   * view.isVisible = true
+   * ```
    */
-  private var descriptionEntranceAnimation: Animation? = null
+  var isPageIndicatorVisible: Boolean = true
+    get() = indicator.isVisible
     set(value) {
       field = value
-      field?.setAnimationListener(descriptionAnimationListener)
+      indicator.isVisible = value
     }
-
-  /**
-   * [Animation] used to animate the exit of the description text.
-   *
-   * @see [descriptionEntranceAnimation]
-   */
-  private var descriptionExitAnimation: Animation? = null
-
-  private var descriptionAnimationListener = object : Animation.AnimationListener {
-    override fun onAnimationRepeat(animation: Animation) {
-    }
-
-    override fun onAnimationEnd(animation: Animation) {
-      descriptionExitAnimation?.let { startDescriptionExitAnimation() }
-    }
-
-    override fun onAnimationStart(animation: Animation) {
-    }
-  }
 
   constructor(context: Context) : this(context, null)
 
@@ -166,14 +141,7 @@ class ImageSlider : ConstraintLayout {
 
     viewPager = findViewById(R.id.view_pager)
     indicator = findViewById(R.id.indicator)
-    descriptionLayout = findViewById(R.id.description_layout)
-    descriptionTextView = findViewById(R.id.description_textview)
 
-    descriptionEntranceAnimation = AnimationGenerator.generateEntranceAnimation(
-        descriptionLayout, AnimationType.TRANSLATION
-    )
-
-    viewPager.addOnPageChangeListener(onPageChangeListener)
     viewPager.setOnTouchListener(viewPagerTouchLister)
 
     val attributes: TypedArray = context.theme.obtainStyledAttributes(
@@ -284,32 +252,5 @@ class ImageSlider : ConstraintLayout {
   /** Remove all listeners that are notified of any changes in scroll state or position. */
   fun clearOnPageChangeListeners() {
     viewPager.clearOnPageChangeListeners()
-  }
-
-  private fun displayDescriptionIfAvailable(sliderAdapter: SliderAdapter) {
-    if (sliderAdapter.hasDescriptions) {
-      startDescriptionEntranceAnimation()
-      descriptionTextView.text = sliderAdapter.descriptions[viewPager.currentItem]
-      descriptionLayout.visibility = View.VISIBLE
-    } else {
-      descriptionLayout.visibility = View.GONE
-    }
-  }
-
-  /** Animates the entrance of the description text. */
-  private fun startDescriptionEntranceAnimation() {
-    descriptionEntranceAnimation = AnimationGenerator.generateEntranceAnimation(
-        descriptionLayout, AnimationType.TRANSLATION
-    )
-    descriptionEntranceAnimation?.setAnimationListener(descriptionAnimationListener)
-    descriptionLayout.startAnimation(descriptionEntranceAnimation)
-  }
-
-  /** Animates the exit of the description text. */
-  private fun startDescriptionExitAnimation() {
-    descriptionExitAnimation = AnimationGenerator.generateExitAnimation(
-        descriptionLayout, AnimationType.TRANSLATION
-    )
-    descriptionLayout.startAnimation(descriptionExitAnimation)
   }
 }

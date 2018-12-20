@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.LinearLayout
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 
@@ -27,12 +29,16 @@ class SliderAdapter(
 
   private val imageLoader: ImageLoader
 
+  private lateinit var slideImageView: ImageView
+  private lateinit var descriptionLayout: LinearLayout
+  private lateinit var descriptionTextView: AppCompatTextView
+
   init {
     if (imageUrls.isEmpty()) {
-      throw IllegalArgumentException("imagesUrls number must be greater than 0")
+      throw IllegalArgumentException("imagesUrls.size < 0")
     }
     if (descriptions.isNotEmpty() && descriptions.size != imageUrls.size) {
-      throw IllegalArgumentException("Descriptions number must be the same as number of slides")
+      throw IllegalArgumentException("Descriptions.size != imagesUrls.size")
     }
     imageLoader = imageLoaderFactory.create()
   }
@@ -45,16 +51,25 @@ class SliderAdapter(
   internal val hasDescriptions: Boolean
     get() = descriptions.isNotEmpty()
 
-  override fun isViewFromObject(view: View, obj: Any): Boolean = view == obj
-
   override fun getCount(): Int = imageUrls.size
+
+  override fun isViewFromObject(view: View, obj: Any): Boolean = view == obj
 
   override fun instantiateItem(container: ViewGroup, position: Int): Any {
     val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-    val view = inflater.inflate(R.layout.slider_view, container, false)
+    val view = inflater.inflate(R.layout.slide_item_view, container, false)
 
-    val slideImageView = view.findViewById(R.id.image) as ImageView
+    view.apply {
+      slideImageView = findViewById(R.id.image)
+      descriptionLayout = findViewById(R.id.description_layout)
+      descriptionTextView = findViewById(R.id.description_textview)
+    }
+
     imageLoader.load(imageUrls[position], slideImageView)
+
+    if (descriptions.isNotEmpty()) {
+      descriptionTextView.text = descriptions[position]
+    }
 
     val viewPager = container as ViewPager
     viewPager.addView(view, 0)

@@ -24,6 +24,9 @@ buildscript {
       'annotations': "androidx.annotation:annotation:${versions.androidx}",
       'exifinterface': "androidx.exifinterface:exifinterface:${versions.androidx}",
       'recyclerview': "androidx.recyclerview:recyclerview:${versions.androidx}",
+      'core': [
+        'ktx': "androidx.core:core-ktx:1.1.0-alpha03"
+      ],
       'test': [
         'runner': 'androidx.test:runner:1.1.0',
         'espresso': [
