@@ -3,4 +3,6 @@
 
   <string name="menu_glide">Glide</string>
   <string name="menu_picasso">Picasso</string>
+  <string name="show_hide_indicators">Show/Hide indicators</string>
+  <string name="show_hide_descriptions">Show/Hide descriptions</string>
 </resources>

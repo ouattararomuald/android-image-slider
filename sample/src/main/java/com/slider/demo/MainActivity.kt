@@ -1,6 +1,7 @@
 package com.slider.demo
 
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -16,6 +17,10 @@ class MainActivity : AppCompatActivity() {
   private lateinit var recyclerView: RecyclerView
   private val groupAdapter = GroupAdapter<ViewHolder>()
   private var section = Section()
+  private val sliderItems = mutableListOf<SliderItem>()
+
+  private var pageIndicatorsVisible: Boolean = true
+  private var pageDescriptionsVisible: Boolean = true
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -44,8 +49,39 @@ class MainActivity : AppCompatActivity() {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    fillSection(item.itemId)
+    if (item.itemId == R.id.menu_glide_item || item.itemId == R.id.menu_picasso_item) {
+      fillSection(item.itemId)
+    } else if (item.itemId == R.id.menu_show_hide_indicators_item) {
+      togglePageIndicatorsVisibility()
+    } else if (item.itemId == R.id.menu_show_hide_descriptions_item) {
+      togglePageDescriptionsVisibility()
+      sliderItems.forEach {
+        Log.d("VIS", it.visibilityStatus)
+      }
+    }
     return true
+  }
+
+  private fun togglePageIndicatorsVisibility() {
+    sliderItems.forEach {
+      if (pageIndicatorsVisible) {
+        it.hidePageIndicator()
+      } else {
+        it.showPageIndicator()
+      }
+    }
+    pageIndicatorsVisible = !pageIndicatorsVisible
+  }
+
+  private fun togglePageDescriptionsVisibility() {
+    sliderItems.forEach {
+      if (pageDescriptionsVisible) {
+        it.hideDescriptions()
+      } else {
+        it.showDescriptions()
+      }
+    }
+    pageDescriptionsVisible = !pageDescriptionsVisible
   }
 
   private fun fillSection(menuId: Int) {
@@ -53,14 +89,16 @@ class MainActivity : AppCompatActivity() {
 
     groupAdapter.remove(section)
     section = Section()
+    sliderItems.clear()
+
     Data.URLS.keys.forEach { pageTransformer ->
-      section.add(
-          SliderItem(
-              imageLoaderType,
-              Data.URLS[pageTransformer]!!.toTypedArray(),
-              pageTransformer
-          )
+      val item = SliderItem(
+          imageLoaderType,
+          Data.URLS[pageTransformer]!!.toTypedArray(),
+          pageTransformer
       )
+      sliderItems.add(item)
+      section.add(item)
     }
     groupAdapter.add(section)
   }

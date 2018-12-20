@@ -38,6 +38,7 @@ dependencies {
   implementation deps.kotlin.stdlib.jdk8
 
   api deps.androidx.annotations
+  implementation deps.androidx.core.ktx
   implementation deps.androidx.appcompat
   implementation deps.androidx.constraintLayout
   implementation deps.androidx.material

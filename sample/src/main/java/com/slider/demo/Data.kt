@@ -4,7 +4,7 @@ import miaoyongjun.pagetransformer.MagicTransformer
 import miaoyongjun.pagetransformer.TransitionEffect
 
 internal class Data private constructor() {
-  
+
   companion object {
     private const val BASE = "https://i.imgur.com/"
     private const val EXT = ".jpg"
@@ -68,19 +68,31 @@ internal class Data private constructor() {
             "OKvWoTh",
             "zD3gT4Z",
             "z77CaIt"
+        ).toImageUrls(),
+        MagicTransformer.getPageTransformer(TransitionEffect.Zoom) to arrayOf(
+            "7GUv9qa",
+            "xZLIYFV"
+        ).toImageUrls(),
+        MagicTransformer.getPageTransformer(TransitionEffect.Zoom) to arrayOf(
+            "P5ZRSvT",
+            "Q54zMKT"
         ).toImageUrls()
     )
 
     fun generateDescriptions(source: String, number: Int = 1): ArrayList<String> {
-      val descriptions: ArrayList<String> = ArrayList(number)
+      if (number > 2) {
+        val descriptions: ArrayList<String> = ArrayList(number)
 
-      (1..number).forEach {
-        descriptions.add("$source image  $it")
+        (1..number).forEach {
+          descriptions.add("$source image  $it")
+        }
+
+        return descriptions
       }
 
-      return descriptions
+      return ArrayList()
     }
-    
+
     private fun Array<String>.toImageUrls(): List<String> = map { it.toJpegImgurUrl() }
 
     private fun String.toJpegImgurUrl(): String = BASE + this + EXT
