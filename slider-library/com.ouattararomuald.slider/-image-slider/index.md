@@ -29,7 +29,8 @@ ref com.ouattararomuald.slider.R.styleable#ImageSlider_slideTransitionInterval
 ### Properties
 
 | [adapter](adapter.html) | `var adapter: `[`SliderAdapter`](../-slider-adapter/index.html)`?`<br>Adapter that populates this image slider. |
-| [pageIndicatorVisibility](page-indicator-visibility.html) | `var pageIndicatorVisibility: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>Sets the visibility of the page indicator. The value must be one of [View.VISIBLE](https://developer.android.com/reference/android/view/View.html#VISIBLE), [View.INVISIBLE](https://developer.android.com/reference/android/view/View.html#INVISIBLE) or [View.GONE](https://developer.android.com/reference/android/view/View.html#GONE) |
+| [isPageIndicatorVisible](is-page-indicator-visible.html) | `var isPageIndicatorVisible: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns true when the page indicator visibility is [View.VISIBLE](https://developer.android.com/reference/android/view/View.html#VISIBLE), false otherwise. |
+| [pageIndicatorVisibility](page-indicator-visibility.html) | `var ~~pageIndicatorVisibility~~: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>Sets the visibility of the page indicator. The value must be one of [View.VISIBLE](https://developer.android.com/reference/android/view/View.html#VISIBLE), [View.INVISIBLE](https://developer.android.com/reference/android/view/View.html#INVISIBLE) or [View.GONE](https://developer.android.com/reference/android/view/View.html#GONE) |
 | [pageTransformer](page-transformer.html) | `var pageTransformer: PageTransformer?`<br>Page transformer representing the animation you want to apply to each slide transition. |
 
 ### Functions
