@@ -13,7 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
+import com.ouattararomuald.slider.indicator.CirclePageIndicator
 
 /**
  * Layout manager that allows auto-flip left and right through images.
@@ -32,7 +32,7 @@ class ImageSlider : ConstraintLayout {
   }
 
   private val viewPager: ViewPager
-  private val indicator: TabLayout
+  private val indicator: CirclePageIndicator
 
   private var sliderBackgroundResId: Int = 0
   private var indicatorBackgroundResId: Int = 0
@@ -140,7 +140,7 @@ class ImageSlider : ConstraintLayout {
     LayoutInflater.from(context).inflate(R.layout.slider, this, true)
 
     viewPager = findViewById(R.id.view_pager)
-    indicator = findViewById(R.id.indicator)
+    indicator = findViewById(R.id.pageIndicator)
 
     viewPager.setOnTouchListener(viewPagerTouchLister)
 
@@ -163,6 +163,8 @@ class ImageSlider : ConstraintLayout {
       slideTransitionInterval = getInt(
           R.styleable.ImageSlider_slideTransitionInterval, DEFAULT_PERIOD.toInt()
       ).toLong()
+
+      configureIndicator(this)
     }
 
     loopHandler = LoopHandler(initialSlideDelay, slideTransitionInterval, onLoop = {
@@ -191,6 +193,27 @@ class ImageSlider : ConstraintLayout {
     }
   }
 
+  private fun configureIndicator(attributes: TypedArray) {
+    val res = resources
+    val defaultPageColor = res.getColor(R.color.default_circle_indicator_page_color)
+    val defaultFillColor = res.getColor(R.color.default_circle_indicator_fill_color)
+    val defaultStrokeColor = res.getColor(R.color.default_circle_indicator_stroke_color)
+    val defaultStrokeWidth = res.getDimension(R.dimen.default_circle_indicator_stroke_width)
+    val defaultRadius = res.getDimension(R.dimen.default_circle_indicator_radius)
+    val defaultSnap = res.getBoolean(R.bool.default_circle_indicator_snap)
+
+    attributes.apply {
+      indicator.setFillColor(getColor(R.styleable.ImageSlider_indicatorFillColor, defaultFillColor))
+      indicator.setPageColor(getColor(R.styleable.ImageSlider_indicatorPageColor, defaultPageColor))
+      indicator.setRadius(getDimension(R.styleable.ImageSlider_indicatorRadius, defaultRadius))
+      indicator.setSnap(getBoolean(R.styleable.ImageSlider_indicatorSnap, defaultSnap))
+      indicator.setStrokeColor(
+          getColor(R.styleable.ImageSlider_indicatorStrokeColor, defaultStrokeColor))
+      indicator.setStrokeWidth(
+          getDimension(R.styleable.ImageSlider_indicatorStrokeWidth, defaultStrokeWidth))
+    }
+  }
+
   override fun onInterceptTouchEvent(event: MotionEvent): Boolean {
     if (!autoRecoverAfterTouchEvent) {
       return false
@@ -205,7 +228,7 @@ class ImageSlider : ConstraintLayout {
 
   private fun setupIndicatorWithViewPagerIfNecessary() {
     if (!indicatorSetupWithPager) {
-      indicator.setupWithViewPager(viewPager, true)
+      indicator.setViewPager(viewPager)
       indicatorSetupWithPager = true
     }
   }
@@ -227,6 +250,15 @@ class ImageSlider : ConstraintLayout {
   }
 
   /**
+   * Set a page change listener which will receive forwarded events.
+   *
+   * @param listener
+   */
+  fun setOnPageChangeListener(listener: ViewPager.OnPageChangeListener) {
+    indicator.setOnPageChangeListener(listener)
+  }
+
+  /**
    * Add a listener that will be invoked whenever the page changes or is incrementally scrolled.
    * See [ViewPager.OnPageChangeListener].
    *
@@ -236,6 +268,11 @@ class ImageSlider : ConstraintLayout {
    *
    * @param pageChangeListener Listener to add.
    */
+  @Deprecated(
+      message = "Use setOnPageChangeListener instead",
+      replaceWith = ReplaceWith("setOnPageChangeListener"),
+      level = DeprecationLevel.WARNING
+  )
   fun addOnPageChangeListener(pageChangeListener: ViewPager.OnPageChangeListener) {
     viewPager.addOnPageChangeListener(pageChangeListener)
   }
@@ -245,11 +282,19 @@ class ImageSlider : ConstraintLayout {
    *
    * @param pageChangeListener Listener to remove.
    */
+  @Deprecated(
+      message = "To be removed",
+      level = DeprecationLevel.WARNING
+  )
   fun removeOnPageChangeListener(pageChangeListener: ViewPager.OnPageChangeListener) {
     viewPager.removeOnPageChangeListener(pageChangeListener)
   }
 
   /** Remove all listeners that are notified of any changes in scroll state or position. */
+  @Deprecated(
+      message = "To be removed",
+      level = DeprecationLevel.WARNING
+  )
   fun clearOnPageChangeListeners() {
     viewPager.clearOnPageChangeListeners()
   }

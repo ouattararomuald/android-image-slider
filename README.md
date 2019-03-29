@@ -101,6 +101,12 @@ initialSlideDelay | Delay in milliseconds before the first slide change.
 initWithAutoCycling | Determines whether or not the ImageSlider should immediately starts its transitions.
 sliderBackground | Reference to a background to be applied to Slider.
 slideTransitionInterval | Time in milliseconds between successive slide changes.
+indicatorFillColor | Color of the filled circle that represents the current page.
+indicatorPageColor | Color of the filled circles that represents pages.
+indicatorRadius | Radius of the circles. This is also the spacing between circles.
+indicatorSnap | Whether or not the selected indicator snaps to the circles.
+indicatorStrokeColor | Color of the open circles.
+indicatorStrokeWidth | Width of the stroke used to draw the circles.
 
 
 ## Download

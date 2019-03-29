@@ -14,13 +14,14 @@
       android:layout_height="wrap_content"
   />
 
-  <com.google.android.material.tabs.TabLayout
-      android:id="@+id/indicator"
+  <com.ouattararomuald.slider.indicator.CirclePageIndicator
+      android:id="@+id/pageIndicator"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      app:tabBackground="@drawable/indicator_selector"
-      app:tabGravity="center"
-      app:tabIndicatorHeight="0dp"
+      android:padding="2dp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintBottom_toBottomOf="@id/view_pager"
+      android:layout_marginBottom="24dp"
   />
 </androidx.constraintlayout.widget.ConstraintLayout>

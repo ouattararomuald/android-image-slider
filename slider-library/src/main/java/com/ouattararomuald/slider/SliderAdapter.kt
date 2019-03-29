@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.view.isVisible
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 
@@ -70,6 +71,8 @@ class SliderAdapter(
     if (descriptions.isNotEmpty()) {
       descriptionTextView.text = descriptions[position]
     }
+
+    descriptionLayout.isVisible = descriptions.isNotEmpty()
 
     val viewPager = container as ViewPager
     viewPager.addView(view, 0)
