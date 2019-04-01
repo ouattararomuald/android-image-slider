@@ -10,6 +10,7 @@ import android.view.View
 import android.view.View.OnTouchListener
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.viewpager.widget.ViewPager
@@ -195,12 +196,19 @@ class ImageSlider : ConstraintLayout {
 
   private fun configureIndicator(attributes: TypedArray) {
     val res = resources
-    val defaultPageColor = res.getColor(R.color.default_circle_indicator_page_color)
-    val defaultFillColor = res.getColor(R.color.default_circle_indicator_fill_color)
-    val defaultStrokeColor = res.getColor(R.color.default_circle_indicator_stroke_color)
+    val defaultPageColor =
+        ContextCompat.getColor(context, R.color.default_circle_indicator_page_color)
+    val defaultFillColor =
+        ContextCompat.getColor(context, R.color.default_circle_indicator_fill_color)
+    val defaultStrokeColor =
+        ContextCompat.getColor(context, R.color.default_circle_indicator_stroke_color)
     val defaultStrokeWidth = res.getDimension(R.dimen.default_circle_indicator_stroke_width)
     val defaultRadius = res.getDimension(R.dimen.default_circle_indicator_radius)
     val defaultSnap = res.getBoolean(R.bool.default_circle_indicator_snap)
+    val defaultIndicatorsMarginLeft = res.getDimension(R.dimen.default_indicators_left_margin)
+    val defaultIndicatorsMarginTop = res.getDimension(R.dimen.default_indicators_top_margin)
+    val defaultIndicatorsMarginRight = res.getDimension(R.dimen.default_indicators_right_margin)
+    val defaultIndicatorsMarginBottom = res.getDimension(R.dimen.default_indicators_bottom_margin)
 
     attributes.apply {
       indicator.setFillColor(getColor(R.styleable.ImageSlider_indicatorFillColor, defaultFillColor))
@@ -211,6 +219,25 @@ class ImageSlider : ConstraintLayout {
           getColor(R.styleable.ImageSlider_indicatorStrokeColor, defaultStrokeColor))
       indicator.setStrokeWidth(
           getDimension(R.styleable.ImageSlider_indicatorStrokeWidth, defaultStrokeWidth))
+
+      setIndicatorsMargin(
+          getDimension(
+              R.styleable.ImageSlider_indicatorsLeftMargin,
+              defaultIndicatorsMarginLeft
+          ).toInt(),
+          getDimension(
+              R.styleable.ImageSlider_indicatorsTopMargin,
+              defaultIndicatorsMarginTop
+          ).toInt(),
+          getDimension(
+              R.styleable.ImageSlider_indicatorsRightMargin,
+              defaultIndicatorsMarginRight
+          ).toInt(),
+          getDimension(
+              R.styleable.ImageSlider_indicatorsBottomMargin,
+              defaultIndicatorsMarginBottom
+          ).toInt()
+      )
     }
   }
 
@@ -247,6 +274,31 @@ class ImageSlider : ConstraintLayout {
       loopHandler.stopAutoLooping()
       isAutoCycling = false
     }
+  }
+
+  /**
+   * Sets the margin in pixels
+   *
+   * @param left the left margin size.
+   * @param top the top margin size.
+   * @param right the right margin size.
+   * @param bottom the bottom margin size.
+   */
+  fun setIndicatorsMargin(left: Int, top: Int, right: Int, bottom: Int) {
+    val params = indicator.layoutParams as MarginLayoutParams
+    params.setMargins(left, top, right, bottom)
+    indicator.layoutParams = params
+  }
+
+  /**
+   * Sets the bottom margin in pixels under the indicators.
+   *
+   * @param bottom the bottom margin size.
+   */
+  fun setIndicatorsBottomMargin(bottom: Int) {
+    val params = indicator.layoutParams as MarginLayoutParams
+    params.setMargins(params.leftMargin, paddingTop, params.rightMargin, bottom)
+    indicator.layoutParams = params
   }
 
   /**
