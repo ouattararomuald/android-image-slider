@@ -26,6 +26,14 @@
     <attr name="indicatorStrokeColor" format="color" />
     <!-- Width of the stroke used to draw the circles. -->
     <attr name="indicatorStrokeWidth" />
+    <!-- Indicators left margin size. -->
+    <attr name="indicatorsLeftMargin"/>
+    <!-- Indicators top margin size. -->
+    <attr name="indicatorsTopMargin"/>
+    <!-- Indicators right margin size. -->
+    <attr name="indicatorsRightMargin"/>
+    <!-- Indicators bottom margin size. -->
+    <attr name="indicatorsBottomMargin"/>
   </declare-styleable>
 
 

@@ -29,6 +29,7 @@ import android.view.View
 import android.view.ViewConfiguration
 import android.widget.LinearLayout.HORIZONTAL
 import android.widget.LinearLayout.VERTICAL
+import androidx.core.content.ContextCompat
 import androidx.core.view.MotionEventCompat
 import androidx.core.view.ViewConfigurationCompat
 import androidx.viewpager.widget.ViewPager
@@ -38,7 +39,10 @@ import com.ouattararomuald.slider.R
  * Draws circles (one for each view). The current view position is filled and
  * others are only stroked.
  */
-class CirclePageIndicator : View, PageIndicator {
+@Suppress("LongMethod", "LargeClass", "ComplexMethod", "TooManyFunctions", "ReturnCount",
+    "MagicNumber", "NestedBlockDepth", "MatchingDeclarationName", "empty-blocks")
+@SuppressWarnings("")
+internal class CirclePageIndicator : View, PageIndicator {
 
   companion object {
     private const val INVALID_POINTER = -1
@@ -58,10 +62,10 @@ class CirclePageIndicator : View, PageIndicator {
   private var centered: Boolean = false
   private var snap: Boolean = false
 
-  private var mTouchSlop: Int = 0
-  private var mLastMotionX = -1f
-  private var mActivePointerId = INVALID_POINTER
-  private var mIsDragging: Boolean = false
+  private var touchSlop: Int = 0
+  private var lastMotionX = -1f
+  private var activePointerId = INVALID_POINTER
+  private var isDragging: Boolean = false
 
   constructor(context: Context) : this(context, null)
 
@@ -73,10 +77,13 @@ class CirclePageIndicator : View, PageIndicator {
 
     //Load defaults from resources
     val res = resources
-    val defaultPageColor = res.getColor(R.color.default_circle_indicator_page_color)
-    val defaultFillColor = res.getColor(R.color.default_circle_indicator_fill_color)
+    val defaultPageColor =
+        ContextCompat.getColor(context, R.color.default_circle_indicator_page_color)
+    val defaultFillColor =
+        ContextCompat.getColor(context, R.color.default_circle_indicator_fill_color)
     val defaultOrientation = res.getInteger(R.integer.default_circle_indicator_orientation)
-    val defaultStrokeColor = res.getColor(R.color.default_circle_indicator_stroke_color)
+    val defaultStrokeColor =
+        ContextCompat.getColor(context, R.color.default_circle_indicator_stroke_color)
     val defaultStrokeWidth = res.getDimension(R.dimen.default_circle_indicator_stroke_width)
     val defaultRadius = res.getDimension(R.dimen.default_circle_indicator_radius)
     val defaultCentered = res.getBoolean(R.bool.default_circle_indicator_centered)
@@ -106,7 +113,7 @@ class CirclePageIndicator : View, PageIndicator {
     a.recycle()
 
     val configuration = ViewConfiguration.get(context)
-    mTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(configuration)
+    touchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(configuration)
   }
 
   fun setCentered(centered: Boolean) {
@@ -187,6 +194,7 @@ class CirclePageIndicator : View, PageIndicator {
     return snap
   }
 
+  @Suppress("LongMethod")
   override fun onDraw(canvas: Canvas) {
     super.onDraw(canvas)
 
@@ -278,26 +286,26 @@ class CirclePageIndicator : View, PageIndicator {
       return false
     }
 
-    val action = ev.action and MotionEventCompat.ACTION_MASK
+    val action = ev.action and MotionEvent.ACTION_MASK
     when (action) {
       MotionEvent.ACTION_DOWN -> {
-        mActivePointerId = MotionEventCompat.getPointerId(ev, 0)
-        mLastMotionX = ev.x
+        activePointerId = MotionEventCompat.getPointerId(ev, 0)
+        lastMotionX = ev.x
       }
 
       MotionEvent.ACTION_MOVE -> {
-        val activePointerIndex = MotionEventCompat.findPointerIndex(ev, mActivePointerId)
-        val x = MotionEventCompat.getX(ev, activePointerIndex)
-        val deltaX = x - mLastMotionX
+        val activePointerIndex = ev.findPointerIndex(activePointerId)
+        val x = ev.x
+        val deltaX = x - lastMotionX
 
-        if (!mIsDragging) {
-          if (Math.abs(deltaX) > mTouchSlop) {
-            mIsDragging = true
+        if (!isDragging) {
+          if (Math.abs(deltaX) > touchSlop) {
+            isDragging = true
           }
         }
 
-        if (mIsDragging) {
-          mLastMotionX = x
+        if (isDragging) {
+          lastMotionX = x
           if (viewPager!!.isFakeDragging || viewPager!!.beginFakeDrag()) {
             viewPager!!.fakeDragBy(deltaX)
           }
@@ -305,7 +313,7 @@ class CirclePageIndicator : View, PageIndicator {
       }
 
       MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
-        if (!mIsDragging) {
+        if (!isDragging) {
           val count = viewPager!!.adapter!!.count
           val width = width
           val halfWidth = width / 2f
@@ -324,26 +332,24 @@ class CirclePageIndicator : View, PageIndicator {
           }
         }
 
-        mIsDragging = false
-        mActivePointerId = INVALID_POINTER
+        isDragging = false
+        activePointerId = INVALID_POINTER
         if (viewPager!!.isFakeDragging) viewPager!!.endFakeDrag()
       }
 
-      MotionEventCompat.ACTION_POINTER_DOWN -> {
-        val index = MotionEventCompat.getActionIndex(ev)
-        mLastMotionX = MotionEventCompat.getX(ev, index)
-        mActivePointerId = MotionEventCompat.getPointerId(ev, index)
+      MotionEvent.ACTION_POINTER_DOWN -> {
+        lastMotionX = ev.x
+        activePointerId = ev.getPointerId(ev.actionIndex)
       }
 
-      MotionEventCompat.ACTION_POINTER_UP -> {
-        val pointerIndex = MotionEventCompat.getActionIndex(ev)
-        val pointerId = MotionEventCompat.getPointerId(ev, pointerIndex)
-        if (pointerId == mActivePointerId) {
-          val newPointerIndex = if (pointerIndex == 0) 1 else 0
-          mActivePointerId = MotionEventCompat.getPointerId(ev, newPointerIndex)
+      MotionEvent.ACTION_POINTER_UP -> {
+        val pointerId = ev.getPointerId(ev.actionIndex)
+        if (pointerId == activePointerId) {
+          val newPointerIndex = if (ev.actionIndex == 0) 1 else 0
+          activePointerId = ev.getPointerId(newPointerIndex)
         }
-        mLastMotionX =
-            MotionEventCompat.getX(ev, MotionEventCompat.findPointerIndex(ev, mActivePointerId))
+        lastMotionX =
+            MotionEventCompat.getX(ev, ev.findPointerIndex(activePointerId))
       }
     }
 
@@ -355,13 +361,13 @@ class CirclePageIndicator : View, PageIndicator {
       return
     }
     if (viewPager != null) {
-      viewPager!!.setOnPageChangeListener(null)
+      viewPager!!.clearOnPageChangeListeners()
     }
     if (view.adapter == null) {
       throw IllegalStateException("ViewPager does not have adapter instance.")
     }
     viewPager = view
-    viewPager!!.setOnPageChangeListener(this)
+    viewPager!!.addOnPageChangeListener(this)
     invalidate()
   }
 
@@ -418,10 +424,10 @@ class CirclePageIndicator : View, PageIndicator {
   }
 
   /*
-     * (non-Javadoc)
-     *
-     * @see android.view.View#onMeasure(int, int)
-     */
+   * (non-Javadoc)
+   *
+   * @see android.view.View#onMeasure(int, int)
+   */
   override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
     if (orientation == HORIZONTAL) {
       setMeasuredDimension(measureLong(widthMeasureSpec), measureShort(heightMeasureSpec))

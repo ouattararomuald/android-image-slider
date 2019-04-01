@@ -107,6 +107,10 @@ indicatorRadius | Radius of the circles. This is also the spacing between circle
 indicatorSnap | Whether or not the selected indicator snaps to the circles.
 indicatorStrokeColor | Color of the open circles.
 indicatorStrokeWidth | Width of the stroke used to draw the circles.
+indicatorsLeftMargin | Indicators left margin size.
+indicatorsTopMargin | Indicators top margin size.
+indicatorsRightMargin | Indicators right margin size.
+indicatorsBottomMargin | Indicators bottom margin size.
 
 
 ## Download
