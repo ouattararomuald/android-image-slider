@@ -10,7 +10,7 @@ buildscript {
 
   ext.versions = [
     'androidx': '1.0.0',
-    'dokka': '0.9.17',
+    'dokka': '0.9.18',
     'glide': '4.8.0',
     'groupie': '2.3.0',
     'kotlin': '1.3.11',

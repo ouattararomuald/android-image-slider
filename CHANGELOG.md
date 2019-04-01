@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 - Use *AndroidX*
 - Hide description layout when image description is empty
 - Enable indicators customization (size, color, margin)
+- Depracated: `addOnPageChangeListener`, `removeOnPageChangeListener`, `clearOnPageChangeListeners`
 
 ## [1.0.0]
 

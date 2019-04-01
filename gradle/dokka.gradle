@@ -10,6 +10,10 @@ dokka {
     url = new URL("https://developer.android.com/reference/")
     packageListUrl = new URL("https://developer.android.com/reference/android/support/package-list")
   }
+  externalDocumentationLink {
+    url = new URL("https://developer.android.com/reference/")
+    packageListUrl = new URL("https://developer.android.com/reference/androidx/package-list")
+  }
 }
 
 task dokkaJar(type: Jar, dependsOn: dokka) {
