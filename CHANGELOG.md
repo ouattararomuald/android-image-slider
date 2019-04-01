@@ -3,10 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [1.0.1]
+## [1.1.0]
 
 - Use *AndroidX*
 - Hide description layout when image description is empty
+- Enable indicators customization (size, color, margin)
 
 ## [1.0.0]
 
