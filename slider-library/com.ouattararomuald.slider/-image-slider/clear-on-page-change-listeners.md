@@ -6,7 +6,8 @@ title: ImageSlider.clearOnPageChangeListeners - slider-library
 
 # clearOnPageChangeListeners
 
-`fun clearOnPageChangeListeners(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun ~~clearOnPageChangeListeners~~(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+**Deprecated:** To be removed
 
 Remove all listeners that are notified of any changes in scroll state or position.
 

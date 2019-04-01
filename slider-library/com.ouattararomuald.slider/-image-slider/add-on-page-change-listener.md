@@ -6,7 +6,8 @@ title: ImageSlider.addOnPageChangeListener - slider-library
 
 # addOnPageChangeListener
 
-`fun addOnPageChangeListener(pageChangeListener: OnPageChangeListener): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun ~~addOnPageChangeListener~~(pageChangeListener: OnPageChangeListener): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+**Deprecated:** Use setOnPageChangeListener instead
 
 Add a listener that will be invoked whenever the page changes or is incrementally scrolled.
 See [ViewPager.OnPageChangeListener](#).
