@@ -25,21 +25,21 @@
     <!-- Color of the open circles. -->
     <attr name="indicatorStrokeColor" format="color" />
     <!-- Width of the stroke used to draw the circles. -->
-    <attr name="indicatorStrokeWidth" />
+    <attr name="indicatorStrokeWidth" format="dimension" />
     <!-- Indicators left margin size. -->
-    <attr name="indicatorsLeftMargin"/>
+    <attr name="indicatorsLeftMargin" format="dimension" />
     <!-- Indicators top margin size. -->
-    <attr name="indicatorsTopMargin"/>
+    <attr name="indicatorsTopMargin" format="dimension" />
     <!-- Indicators right margin size. -->
-    <attr name="indicatorsRightMargin"/>
+    <attr name="indicatorsRightMargin" format="dimension" />
     <!-- Indicators bottom margin size. -->
-    <attr name="indicatorsBottomMargin"/>
+    <attr name="indicatorsBottomMargin" format="dimension" />
   </declare-styleable>
 
 
   <declare-styleable name="CirclePageIndicator">
     <!-- Whether or not the indicators should be centered. -->
-    <attr name="centered" />
+    <attr name="centered" format="boolean" />
     <!-- Color of the filled circle that represents the current page. -->
     <attr name="fillColor" format="color" />
     <!-- Color of the filled circles that represents pages. -->

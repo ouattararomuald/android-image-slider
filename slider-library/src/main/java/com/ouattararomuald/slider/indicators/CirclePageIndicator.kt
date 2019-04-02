@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ouattararomuald.slider.indicator
+package com.ouattararomuald.slider.indicators
 
 import android.content.Context
 import android.graphics.Canvas
@@ -31,7 +31,6 @@ import android.widget.LinearLayout.HORIZONTAL
 import android.widget.LinearLayout.VERTICAL
 import androidx.core.content.ContextCompat
 import androidx.core.view.MotionEventCompat
-import androidx.core.view.ViewConfigurationCompat
 import androidx.viewpager.widget.ViewPager
 import com.ouattararomuald.slider.R
 
@@ -40,8 +39,7 @@ import com.ouattararomuald.slider.R
  * others are only stroked.
  */
 @Suppress("LongMethod", "LargeClass", "ComplexMethod", "TooManyFunctions", "ReturnCount",
-    "MagicNumber", "NestedBlockDepth", "MatchingDeclarationName", "empty-blocks")
-@SuppressWarnings("")
+    "MagicNumber", "NestedBlockDepth", "MatchingDeclarationName")
 internal class CirclePageIndicator : View, PageIndicator {
 
   companion object {
@@ -107,13 +105,13 @@ internal class CirclePageIndicator : View, PageIndicator {
 
     val background = a.getDrawable(R.styleable.CirclePageIndicator_android_background)
     if (background != null) {
-      setBackgroundDrawable(background)
+      setBackground(background)
     }
 
     a.recycle()
 
-    val configuration = ViewConfiguration.get(context)
-    touchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(configuration)
+    val viewConfiguration = ViewConfiguration.get(context)
+    touchSlop = viewConfiguration.scaledPagingTouchSlop
   }
 
   fun setCentered(centered: Boolean) {
@@ -194,7 +192,6 @@ internal class CirclePageIndicator : View, PageIndicator {
     return snap
   }
 
-  @Suppress("LongMethod")
   override fun onDraw(canvas: Canvas) {
     super.onDraw(canvas)
 
@@ -289,12 +286,11 @@ internal class CirclePageIndicator : View, PageIndicator {
     val action = ev.action and MotionEvent.ACTION_MASK
     when (action) {
       MotionEvent.ACTION_DOWN -> {
-        activePointerId = MotionEventCompat.getPointerId(ev, 0)
+        activePointerId = ev.getPointerId(0)
         lastMotionX = ev.x
       }
 
       MotionEvent.ACTION_MOVE -> {
-        val activePointerIndex = ev.findPointerIndex(activePointerId)
         val x = ev.x
         val deltaX = x - lastMotionX
 

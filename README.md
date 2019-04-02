@@ -15,9 +15,9 @@ Create a simple slider with the following code:
 **activity_main.xml**
 ```xml
 <com.ouattararomuald.slider.ImageSlider
-      android:id="@+id/image_slider"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+  android:id="@+id/image_slider"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
 />
 ```
 
@@ -118,14 +118,14 @@ indicatorsBottomMargin | Indicators bottom margin size.
 Download the [latest AAR](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.ouattararomuald%22%20AND%20a%3A%22slider%22) or grab via Gradle:
 
 ```gradle
-implementation 'com.ouattararomuald:slider-glide:1.1.0' // If you use Glide
-implementation 'com.ouattararomuald:slider-picasso:1.1.0' // If you use Picasso
+implementation 'com.ouattararomuald:slider-glide:2.0.0' // If you use Glide
+implementation 'com.ouattararomuald:slider-picasso:2.0.0' // If you use Picasso
 ```
 
 If you want to use another image loading library include:
 
 ```gradle
-implementation 'com.ouattararomuald:slider:1.1.0'
+implementation 'com.ouattararomuald:slider:2.0.0'
 ```
 
 and create you custom `ImageLoader` by implementing `ImageLoader#Factory` (see `glide-loader` or `picasso-loader`).
@@ -137,7 +137,7 @@ or Maven:
 <dependency>
   <groupId>com.ouattararomuald</groupId>
   <artifactId>slider-glide</artifactId>
-  <version>1.1.0</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
@@ -146,7 +146,7 @@ or Maven:
 <dependency>
   <groupId>com.ouattararomuald</groupId>
   <artifactId>slider-picasso</artifactId>
-  <version>1.1.0</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 
@@ -155,7 +155,7 @@ or Maven:
 <dependency>
   <groupId>com.ouattararomuald</groupId>
   <artifactId>slider</artifactId>
-  <version>1.1.0</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 

@@ -7,8 +7,13 @@ dokka {
   jdkVersion = 8
 
   externalDocumentationLink {
-    url = new URL("https://developer.android.com/reference/")
+    url = new URL("https://developer.android.com/reference/android/support/packages")
     packageListUrl = new URL("https://developer.android.com/reference/android/support/package-list")
+  }
+
+  externalDocumentationLink {
+    url = new URL("https://developer.android.com/reference/androidx/packages")
+    packageListUrl = new URL("https://developer.android.com/reference/androidx/package-list")
   }
 }
 

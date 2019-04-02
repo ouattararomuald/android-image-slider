@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'com.vanniktech.maven.publish'
 
 android {
   compileSdkVersion buildConfig.compileSdk
@@ -12,6 +13,11 @@ android {
     versionName "1.0"
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
   }
 
   buildTypes {
@@ -36,5 +42,3 @@ dependencies {
   androidTestImplementation deps.androidx.test.espresso.core
   androidTestImplementation deps.truth
 }
-
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
