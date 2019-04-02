@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.isVisible
 import androidx.viewpager.widget.ViewPager
-import com.ouattararomuald.slider.indicator.CirclePageIndicator
+import com.ouattararomuald.slider.indicators.CirclePageIndicator
 
 /**
  * Layout manager that allows auto-flip left and right through images.
@@ -95,21 +95,6 @@ class ImageSlider : ConstraintLayout {
     }
 
   /**
-   * Sets the visibility of the page indicator.
-   * The value must be one of [View.VISIBLE], [View.INVISIBLE] or [View.GONE]
-   */
-  @Deprecated(
-      message = "Use isPageIndicatorVisible instead",
-      replaceWith = ReplaceWith("isPageIndicatorVisible"),
-      level = DeprecationLevel.WARNING
-  )
-  var pageIndicatorVisibility: Int = View.VISIBLE
-    set(value) {
-      field = value
-      indicator.visibility = field
-    }
-
-  /**
    * Returns true when the page indicator visibility is [View.VISIBLE], false otherwise.
    *
    * ```
@@ -141,7 +126,7 @@ class ImageSlider : ConstraintLayout {
     LayoutInflater.from(context).inflate(R.layout.slider, this, true)
 
     viewPager = findViewById(R.id.view_pager)
-    indicator = findViewById(R.id.pageIndicator)
+    indicator = findViewById(R.id.circle_page_indicator)
 
     viewPager.setOnTouchListener(viewPagerTouchLister)
 
@@ -302,7 +287,7 @@ class ImageSlider : ConstraintLayout {
   }
 
   /**
-   * Set a page change listener which will receive forwarded events.
+   * Sets a page change listener which will receive forwarded events.
    *
    * @param listener
    */
@@ -311,7 +296,7 @@ class ImageSlider : ConstraintLayout {
   }
 
   /**
-   * Add a listener that will be invoked whenever the page changes or is incrementally scrolled.
+   * Adds a listener that will be invoked whenever the page changes or is incrementally scrolled.
    * See [ViewPager.OnPageChangeListener].
    *
    * Components that add a listener should take care to remove it when finished. Other components
@@ -330,7 +315,7 @@ class ImageSlider : ConstraintLayout {
   }
 
   /**
-   * Remove a listener that was previously added via [addOnPageChangeListener].
+   * Removes a listener that was previously added via [addOnPageChangeListener].
    *
    * @param pageChangeListener Listener to remove.
    */
@@ -342,7 +327,7 @@ class ImageSlider : ConstraintLayout {
     viewPager.removeOnPageChangeListener(pageChangeListener)
   }
 
-  /** Remove all listeners that are notified of any changes in scroll state or position. */
+  /** Removes all listeners that are notified of any changes in scroll state or position. */
   @Deprecated(
       message = "To be removed",
       level = DeprecationLevel.WARNING

@@ -3,12 +3,14 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
-## [1.0.1]
+## [2.0.0] - 2019-04-02
 
+- Java 8 source compatibility
 - Use *AndroidX*
+- Indicators Customization (colors, size, radius)
 - Hide description layout when image description is empty
 
-## [1.0.0]
+## [1.0.0] - 2018-08-11
 
 - Add **Picasso** as default Image Loader. User can still provide another library as *ImageLoader*. (Breaking change)
 - Add Image urls to parameters of **SlideAdapter**. (Breaking change)

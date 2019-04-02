@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.vanniktech.maven.publish'
 
 android {
   compileSdkVersion buildConfig.compileSdk
@@ -12,6 +13,11 @@ android {
     versionName "1.0"
 
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
   }
 
   lintOptions {
@@ -51,5 +57,5 @@ dependencies {
   androidTestImplementation deps.truth
 }
 
-apply from: rootProject.file('gradle/dokka.gradle')
-apply from: rootProject.file('gradle/gradle-mvn-push.gradle')
+// TODO: Disabled to avoid exception of Duplicate Key Signature.
+//apply from: rootProject.file('gradle/dokka.gradle')
