@@ -19,11 +19,14 @@ class MainActivity : AppCompatActivity() {
   private val sliderItems = mutableListOf<SliderItem>()
 
   private var pageIndicatorsVisible: Boolean = true
-  private var pageDescriptionsVisible: Boolean = true
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
+  }
+
+  override fun onResume() {
+    super.onResume()
 
     groupAdapter.add(section)
 

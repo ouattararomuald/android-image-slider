@@ -56,6 +56,3 @@ dependencies {
   androidTestImplementation deps.androidx.test.espresso.core
   androidTestImplementation deps.truth
 }
-
-// TODO: Disabled to avoid exception of Duplicate Key Signature.
-//apply from: rootProject.file('gradle/dokka.gradle')
