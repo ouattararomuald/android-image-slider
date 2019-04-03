@@ -47,8 +47,8 @@ jobs:
         path: sample/build/reports/lint-results.html
 
     - run:
-        name: Kotlin Lint
-        command: ./gradlew detektCheck
+        name: Kotlin code analysis
+        command: ./gradlew detekt
 
     - deploy:
         name: Deploy
