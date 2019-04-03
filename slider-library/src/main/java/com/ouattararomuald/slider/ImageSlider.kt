@@ -20,8 +20,20 @@ import com.ouattararomuald.slider.indicators.CirclePageIndicator
  * Layout manager that allows auto-flip left and right through images.
  *
  *
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_autoRecoverAfterTouchEvent
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_initWithAutoCycling
  * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_indicatorBackground
  * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_initialSlideDelay
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_indicatorFillColor
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_indicatorPageColor
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_indicatorRadius
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_indicatorSnap
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_indicatorStrokeColor
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_indicatorStrokeWidth
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_indicatorsLeftMargin
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_indicatorsTopMargin
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_indicatorsRightMargin
+ * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_indicatorsBottomMargin
  * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_sliderBackground
  * @attr ref com.ouattararomuald.slider.R.styleable#ImageSlider_slideTransitionInterval
  */

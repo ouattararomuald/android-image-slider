@@ -13,7 +13,6 @@
     <attr name="sliderBackground" format="reference"/>
     <!-- Time in milliseconds between successive slide changes. -->
     <attr name="slideTransitionInterval" format="integer"/>
-
     <!-- Color of the filled circle that represents the current page. -->
     <attr name="indicatorFillColor" format="color" />
     <!-- Color of the filled circles that represents pages. -->
