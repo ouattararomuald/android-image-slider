@@ -100,39 +100,39 @@ subprojects { project ->
     into "${buildDir}/intermediates/classes/test/debug/resources"
   }
 
-  /*tasks.withType(Javadoc).all {
-    enabled = false
-  }*/
-
   afterEvaluate {
     if (project.tasks.findByName('assembleDebug')) {
       assembleDebug.dependsOn(copyResourcesToClasses)
+    }
+  }
+
+  if (project.name == 'slider-library') {
+    apply plugin: 'org.jetbrains.dokka-android'
+
+    task androidDokka(type: org.jetbrains.dokka.gradle.DokkaAndroidTask) {
+      outputFormat = 'jekyll'
+      outputDirectory = "$buildDir/documentation"
+
+      reportUndocumented = false
+      skipDeprecated = true
+      jdkVersion = 8
+
+      externalDocumentationLink {
+        url = new URL("https://developer.android.com/reference/android/support/packages")
+        packageListUrl =
+                new URL("https://developer.android.com/reference/android/support/package-list")
+      }
+
+      externalDocumentationLink {
+        url = new URL("https://developer.android.com/reference/androidx/packages")
+        packageListUrl = new URL("https://developer.android.com/reference/androidx/package-list")
+      }
     }
   }
 }
 
 task clean(type: Delete) {
   delete rootProject.buildDir
-}
-
-apply plugin: 'org.jetbrains.dokka-android'
-dokka {
-  outputFormat = 'jekyll'
-  outputDirectory = "$buildDir/documentation"
-
-  reportUndocumented = false
-  skipDeprecated = true
-  jdkVersion = 8
-
-  externalDocumentationLink {
-    url = new URL("https://developer.android.com/reference/android/support/packages")
-    packageListUrl = new URL("https://developer.android.com/reference/android/support/package-list")
-  }
-
-  externalDocumentationLink {
-    url = new URL("https://developer.android.com/reference/androidx/packages")
-    packageListUrl = new URL("https://developer.android.com/reference/androidx/package-list")
-  }
 }
 
 detekt {
