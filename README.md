@@ -52,65 +52,7 @@ class MainActivity : AppCompatActivity() {
 ```
 
 `Slider` comes with Picasso as dependency to load images. If you want to use another library,
-you must extend `ImageLoader#Factory` and pass your factory to `SliderAdapter`.
-
-
-## Animations
-
-A slider needs animations between each transition. To create a transition, you must implement `ViewPager.PageTransformer` and pass it to `ImageSlider#pageTransformer`:
-
-```kotlin
-class MainActivity : AppCompatActivity() {
-  
-  companion object {
-    private const val SLIDE_NUMBER = 10
-  }
-
-  private lateinit var imageSlider: ImageSlider
-  private val imageUrls = arrayListOf(
-    "http://i.imgur.com/CqmBjo5.jpg", 
-    "http://i.imgur.com/zkaAooq.jpg", 
-    "http://i.imgur.com/0gqnEaY.jpg"
-  )
-
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
-
-    imageSlider = findViewById(R.id.image_slider)
-    imageSlider.adapter = SliderAdapter(
-      this,
-      PicassoImageLoaderFactory(),
-      imageUrls = imageUrls,
-      descriptions = Data.generateDescriptions(imageUrls.size)
-    )
-    imageSlider.pageTransformer = MyPageTransformer() // Custom Page Transformer
-  }
-}
-```
-
-**Atributes**
-
-The attributes below are available for usage in your `xml` files:
-
-Attributes | Descriptions
------------- | -------------
-autoRecoverAfterTouchEvent | Determines whether or not the ImageSlider should recover after user touch event.
-indicatorBackground | Reference to a background to be applied to Slider's indicator.
-initialSlideDelay | Delay in milliseconds before the first slide change.
-initWithAutoCycling | Determines whether or not the ImageSlider should immediately starts its transitions.
-sliderBackground | Reference to a background to be applied to Slider.
-slideTransitionInterval | Time in milliseconds between successive slide changes.
-indicatorFillColor | Color of the filled circle that represents the current page.
-indicatorPageColor | Color of the filled circles that represents pages.
-indicatorRadius | Radius of the circles. This is also the spacing between circles.
-indicatorSnap | Whether or not the selected indicator snaps to the circles.
-indicatorStrokeColor | Color of the open circles.
-indicatorStrokeWidth | Width of the stroke used to draw the circles.
-indicatorsLeftMargin | Indicators left margin size.
-indicatorsTopMargin | Indicators top margin size.
-indicatorsRightMargin | Indicators right margin size.
-indicatorsBottomMargin | Indicators bottom margin size.
+you must extend `ImageLoader#Factory` and pass your factory to `SliderAdapter` (see Wiki).
 
 
 ## Download
