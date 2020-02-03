@@ -9,9 +9,9 @@ interface ImageLoader {
   fun load(path: String, imageView: ImageView)
 
   /** Creates an [ImageLoader] instance. */
-  abstract class Factory<T : ImageLoader> {
+  interface Factory<T : ImageLoader> {
 
     /** Creates an [ImageLoader]. */
-    abstract fun create(): T
+    fun create(): T
   }
 }

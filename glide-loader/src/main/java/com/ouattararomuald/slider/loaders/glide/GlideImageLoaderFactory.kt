@@ -15,7 +15,7 @@ import com.ouattararomuald.slider.ImageLoader
 class GlideImageLoaderFactory(
   @DrawableRes private val errorResId: Int = 0,
   @DrawableRes private val placeholderResId: Int = 0
-) : ImageLoader.Factory<GlideImageLoader>() {
+) : ImageLoader.Factory<GlideImageLoader> {
 
   override fun create(): GlideImageLoader = GlideImageLoader(errorResId, placeholderResId)
 }

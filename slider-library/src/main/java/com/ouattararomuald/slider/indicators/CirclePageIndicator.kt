@@ -496,7 +496,7 @@ internal class CirclePageIndicator : View, PageIndicator {
 
   public override fun onSaveInstanceState(): Parcelable? {
     val superState = super.onSaveInstanceState()
-    val savedState = SavedState(superState)
+    val savedState = SavedState(superState!!)
     savedState.currentPage = currentPage
     return savedState
   }
