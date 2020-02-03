@@ -15,7 +15,7 @@ import com.ouattararomuald.slider.ImageLoader
 class PicassoImageLoaderFactory(
   @DrawableRes private val errorResId: Int = 0,
   @DrawableRes private val placeholderResId: Int = 0
-) : ImageLoader.Factory<PicassoImageLoader>() {
+) : ImageLoader.Factory<PicassoImageLoader> {
 
   override fun create(): PicassoImageLoader = PicassoImageLoader(errorResId, placeholderResId)
 }
