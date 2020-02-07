@@ -6,13 +6,9 @@ title: ImageLoader.Factory -
 
 # Factory
 
-`abstract class Factory<T : `[`ImageLoader`](../index.html)`>`
+`interface Factory<T : `[`ImageLoader`](../index.html)`>`
 
 Creates an [ImageLoader](../index.html) instance.
-
-### Constructors
-
-| [&lt;init&gt;](-init-.html) | `Factory()`<br>Creates an [ImageLoader](../index.html) instance. |
 
 ### Functions
 

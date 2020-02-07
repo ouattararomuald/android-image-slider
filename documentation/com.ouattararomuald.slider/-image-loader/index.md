@@ -12,7 +12,7 @@ Loads image into [ImageView](https://developer.android.com/reference/android/wid
 
 ### Types
 
-| [Factory](-factory/index.html) | `abstract class Factory<T : `[`ImageLoader`](./index.html)`>`<br>Creates an [ImageLoader](./index.html) instance. |
+| [Factory](-factory/index.html) | `interface Factory<T : `[`ImageLoader`](./index.html)`>`<br>Creates an [ImageLoader](./index.html) instance. |
 
 ### Functions
 
