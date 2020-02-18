@@ -3,6 +3,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.0.0] - 2020-18-02
+
 - New loader: [Coil](https://github.com/coil-kt/coil).
 - Add options to customize loads when using Glide.
 - Add possibility to customize `ImageView` before image is loaded in.

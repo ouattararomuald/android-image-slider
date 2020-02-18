@@ -60,15 +60,15 @@ you must extend `ImageLoader#Factory` and pass your factory to `SliderAdapter` (
 Download the [latest AAR](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.ouattararomuald%22%20AND%20a%3A%22slider%22) or grab via Gradle:
 
 ```gradle
-implementation 'com.ouattararomuald:slider-coil:2.0.0' // If you use Coil
-implementation 'com.ouattararomuald:slider-glide:2.0.0' // If you use Glide
-implementation 'com.ouattararomuald:slider-picasso:2.0.0' // If you use Picasso
+implementation 'com.ouattararomuald:slider-coil:3.0.0' // If you use Coil
+implementation 'com.ouattararomuald:slider-glide:3.0.0' // If you use Glide
+implementation 'com.ouattararomuald:slider-picasso:3.0.0' // If you use Picasso
 ```
 
 If you want to use another image loading library include:
 
 ```gradle
-implementation 'com.ouattararomuald:slider:2.0.0'
+implementation 'com.ouattararomuald:slider:3.0.0'
 ```
 
 and create you custom `ImageLoader` by implementing `ImageLoader#Factory` (see `glide-loader` or `picasso-loader`).
@@ -80,7 +80,7 @@ or Maven:
 <dependency>
   <groupId>com.ouattararomuald</groupId>
   <artifactId>slider-coil</artifactId>
-  <version>2.0.0</version>
+  <version>3.0.0</version>
 </dependency>
 ```
 
@@ -89,7 +89,7 @@ or Maven:
 <dependency>
   <groupId>com.ouattararomuald</groupId>
   <artifactId>slider-glide</artifactId>
-  <version>2.0.0</version>
+  <version>3.0.0</version>
 </dependency>
 ```
 
@@ -98,7 +98,7 @@ or Maven:
 <dependency>
   <groupId>com.ouattararomuald</groupId>
   <artifactId>slider-picasso</artifactId>
-  <version>2.0.0</version>
+  <version>3.0.0</version>
 </dependency>
 ```
 
@@ -107,7 +107,7 @@ or Maven:
 <dependency>
   <groupId>com.ouattararomuald</groupId>
   <artifactId>slider</artifactId>
-  <version>2.0.0</version>
+  <version>3.0.0</version>
 </dependency>
 ```
 
