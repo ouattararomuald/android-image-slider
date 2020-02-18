@@ -3,6 +3,10 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+- New loader: [Coil](https://github.com/coil-kt/coil).
+- Add options to customize loads when using Glide.
+- Add possibility to customize `ImageView` before image is loaded in.
+
 ## [2.0.0] - 2019-04-02
 
 - Java 8 source compatibility

@@ -15,8 +15,9 @@ import com.squareup.picasso.Picasso
  */
 class PicassoImageLoader(
   @DrawableRes private val errorResId: Int,
-  @DrawableRes private val placeholderResId: Int
-) : ImageLoader {
+  @DrawableRes private val placeholderResId: Int,
+  eventListener: EventListener? = null
+) : ImageLoader(eventListener) {
 
   /** Loads an image into the given [imageView] using the specified [path]. */
   override fun load(path: String, imageView: ImageView) {

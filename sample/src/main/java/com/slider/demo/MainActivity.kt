@@ -51,7 +51,9 @@ class MainActivity : AppCompatActivity() {
   }
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
-    if (item.itemId == R.id.menu_glide_item || item.itemId == R.id.menu_picasso_item) {
+    val imageLoaders = setOf(R.id.menu_coil_item, R.id.menu_glide_item, R.id.menu_picasso_item)
+
+    if (item.itemId in imageLoaders) {
       fillSection(item.itemId)
     } else if (item.itemId == R.id.menu_show_hide_indicators_item) {
       togglePageIndicatorsVisibility()
@@ -90,8 +92,9 @@ class MainActivity : AppCompatActivity() {
   }
 
   private fun getImageLoaderType(menuId: Int): ImageLoaderType = when (menuId) {
+    R.id.menu_coil_item -> ImageLoaderType.COIL
     R.id.menu_glide_item -> ImageLoaderType.GLIDE
     R.id.menu_picasso_item -> ImageLoaderType.PICASSO
-    else -> ImageLoaderType.PICASSO
+    else -> ImageLoaderType.COIL
   }
 }

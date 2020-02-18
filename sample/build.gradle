@@ -47,6 +47,7 @@ androidExtensions {
 dependencies {
   implementation fileTree(dir: 'libs', include: ['*.jar'])
   implementation deps.kotlin.stdlib.jdk8
+  implementation project(':coil-loader')
   implementation project(':glide-loader')
   implementation project(':picasso-loader')
 

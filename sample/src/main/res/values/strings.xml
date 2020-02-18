@@ -1,6 +1,7 @@
 <resources>
   <string name="app_name">Slider</string>
 
+  <string name="menu_coil">Coil</string>
   <string name="menu_glide">Glide</string>
   <string name="menu_picasso">Picasso</string>
   <string name="show_hide_indicators">Show/Hide indicators</string>
