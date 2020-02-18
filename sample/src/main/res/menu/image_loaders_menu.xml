@@ -3,6 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
 >
   <item
+      android:id="@+id/menu_coil_item"
+      android:title="@string/menu_coil"/>
+  <item
       android:id="@+id/menu_glide_item"
       android:title="@string/menu_glide"/>
   <item

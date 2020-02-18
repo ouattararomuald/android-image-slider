@@ -1,4 +1,5 @@
 include ':sample'
+include ':coil-loader'
 include ':glide-loader'
 include ':picasso-loader'
 include ':slider-library'

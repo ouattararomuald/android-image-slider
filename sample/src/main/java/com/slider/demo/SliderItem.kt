@@ -1,9 +1,18 @@
 package com.slider.demo
 
+import android.widget.ImageView
 import androidx.viewpager.widget.ViewPager
+import coil.size.OriginalSize
+import coil.size.Scale
+import coil.size.Size
+import coil.size.SizeResolver
+import coil.transform.CircleCropTransformation
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.ouattararomuald.slider.ImageLoader
 import com.ouattararomuald.slider.ImageSlider
 import com.ouattararomuald.slider.SliderAdapter
+import com.ouattararomuald.slider.loaders.coil.CoilImageLoaderFactory
 import com.ouattararomuald.slider.loaders.glide.GlideImageLoaderFactory
 import com.ouattararomuald.slider.loaders.picasso.PicassoImageLoaderFactory
 import com.xwray.groupie.kotlinandroidextensions.Item
@@ -17,6 +26,12 @@ internal class SliderItem(
 ) : Item() {
 
   private var imageSlider: ImageSlider? = null
+
+  private val imageLoaderEventCallback = object : ImageLoader.EventListener {
+    override fun onImageViewConfiguration(imageView: ImageView) {
+      imageView.scaleType = ImageView.ScaleType.FIT_XY
+    }
+  }
 
   override fun bind(viewHolder: ViewHolder, position: Int) {
     imageSlider = viewHolder.slider
@@ -40,10 +55,14 @@ internal class SliderItem(
 
   private fun getImageLoader(): ImageLoader.Factory<out ImageLoader> {
     return when (imageLoaderType) {
-      ImageLoaderType.GLIDE -> GlideImageLoaderFactory(
-          errorResId = R.drawable.ic_error,
-          placeholderResId = R.drawable.ic_placeholder
-      )
+      ImageLoaderType.COIL -> {
+        CoilImageLoaderFactory(imageLoaderEventCallback)
+      }
+      ImageLoaderType.GLIDE -> {
+        val requestOptions = RequestOptions.errorOf(R.drawable.ic_error)
+            .placeholder(R.drawable.ic_placeholder)
+        GlideImageLoaderFactory(requestOptions = requestOptions)
+      }
       ImageLoaderType.PICASSO -> PicassoImageLoaderFactory(
           errorResId = R.drawable.ic_error,
           placeholderResId = R.drawable.ic_placeholder

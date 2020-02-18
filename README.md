@@ -60,6 +60,7 @@ you must extend `ImageLoader#Factory` and pass your factory to `SliderAdapter` (
 Download the [latest AAR](https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22com.ouattararomuald%22%20AND%20a%3A%22slider%22) or grab via Gradle:
 
 ```gradle
+implementation 'com.ouattararomuald:slider-coil:2.0.0' // If you use Coil
 implementation 'com.ouattararomuald:slider-glide:2.0.0' // If you use Glide
 implementation 'com.ouattararomuald:slider-picasso:2.0.0' // If you use Picasso
 ```
@@ -73,6 +74,15 @@ implementation 'com.ouattararomuald:slider:2.0.0'
 and create you custom `ImageLoader` by implementing `ImageLoader#Factory` (see `glide-loader` or `picasso-loader`).
 
 or Maven:
+
+```xml
+<!-- If you use Coil -->
+<dependency>
+  <groupId>com.ouattararomuald</groupId>
+  <artifactId>slider-coil</artifactId>
+  <version>2.0.0</version>
+</dependency>
+```
 
 ```xml
 <!-- If you use Glide -->

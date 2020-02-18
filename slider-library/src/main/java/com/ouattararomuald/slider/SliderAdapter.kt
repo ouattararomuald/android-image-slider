@@ -66,6 +66,7 @@ class SliderAdapter(
       descriptionTextView = findViewById(R.id.description_textview)
     }
 
+    imageLoader.configureImageView(slideImageView)
     imageLoader.load(imageUrls[position], slideImageView)
 
     if (descriptions.isNotEmpty()) {
