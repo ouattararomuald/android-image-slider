@@ -6,13 +6,18 @@ title: ImageLoader -
 
 # ImageLoader
 
-`interface ImageLoader`
+`abstract class ImageLoader`
 
 Loads image into [ImageView](https://developer.android.com/reference/android/widget/ImageView.html).
 
 ### Types
 
+| [EventListener](-event-listener/index.html) | `interface EventListener` |
 | [Factory](-factory/index.html) | `interface Factory<T : `[`ImageLoader`](./index.html)`>`<br>Creates an [ImageLoader](./index.html) instance. |
+
+### Constructors
+
+| [&lt;init&gt;](-init-.html) | `ImageLoader(eventListener: `[`ImageLoader.EventListener`](-event-listener/index.html)`? = null)`<br>Loads image into [ImageView](https://developer.android.com/reference/android/widget/ImageView.html). |
 
 ### Functions
 
