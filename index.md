@@ -137,7 +137,7 @@ class MainActivity : AppCompatActivity() {
 Download the [lastest AAR](https://search.maven.org/) or grab via Gradle:
 
 ```groovy
-implementation 'com.ouattararomuald:slider:1.0.0'
+implementation 'com.ouattararomuald:slider:3.0.0'
 ```
 
 or Maven:
@@ -146,7 +146,7 @@ or Maven:
 <dependency>
   <groupId>com.ouattararomuald</groupId>
   <artifactId>slider</artifactId>
-  <version>1.0.0</version>
+  <version>3.0.0</version>
 </dependency>
 ```
 
