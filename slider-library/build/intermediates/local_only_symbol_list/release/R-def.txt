@@ -1,0 +1,53 @@
+R_DEF: Internal format may change without notice
+local
+attr? autoRecoverAfterTouchEvent
+attr? centered
+attr? fillColor
+attr? indicatorBackground
+attr? indicatorFillColor
+attr? indicatorPageColor
+attr? indicatorRadius
+attr? indicatorSnap
+attr? indicatorStrokeColor
+attr? indicatorStrokeWidth
+attr? indicatorsBottomMargin
+attr? indicatorsLeftMargin
+attr? indicatorsRightMargin
+attr? indicatorsTopMargin
+attr? initWithAutoCycling
+attr? initialSlideDelay
+attr? pageColor
+attr? radius
+attr? slideTransitionInterval
+attr? sliderBackground
+attr? snap
+attr? strokeColor
+attr? strokeWidth
+bool default_circle_indicator_centered
+bool default_circle_indicator_snap
+color colorAccent
+color default_circle_indicator_fill_color
+color default_circle_indicator_page_color
+color default_circle_indicator_stroke_color
+color descriptionBackground
+dimen default_circle_indicator_radius
+dimen default_circle_indicator_stroke_width
+dimen default_indicators_bottom_margin
+dimen default_indicators_left_margin
+dimen default_indicators_right_margin
+dimen default_indicators_top_margin
+dimen description_horizontal_padding
+drawable default_indicator
+drawable indicator_selector
+drawable selected_indicator
+id circle_page_indicator
+id description_layout
+id description_textview
+id image
+id view_pager
+integer default_circle_indicator_orientation
+layout slide_item_view
+layout slider
+string image_content_description
+styleable CirclePageIndicator centered fillColor pageColor android:orientation radius snap strokeColor strokeWidth android:background
+styleable ImageSlider autoRecoverAfterTouchEvent initWithAutoCycling indicatorBackground initialSlideDelay sliderBackground slideTransitionInterval indicatorFillColor indicatorPageColor indicatorRadius indicatorSnap indicatorStrokeColor indicatorStrokeWidth indicatorsLeftMargin indicatorsTopMargin indicatorsRightMargin indicatorsBottomMargin

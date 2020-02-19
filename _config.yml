@@ -22,7 +22,7 @@ github:
   another_url: another value
 maven:
   project_name: slider
-  artifact_version: 1.0.0
+  artifact_version: 3.0.0
 
 # Build settings
 markdown: kramdown

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <bool name="default_circle_indicator_centered">true</bool>
+    <bool name="default_circle_indicator_snap">false</bool>
+    <color name="colorAccent">#ea20a7</color>
+    <color name="default_circle_indicator_fill_color">#FFFFFFFF</color>
+    <color name="default_circle_indicator_page_color">#00000000</color>
+    <color name="default_circle_indicator_stroke_color">#FFDDDDDD</color>
+    <color name="descriptionBackground">#77000000</color>
+    <dimen name="default_circle_indicator_radius">3dp</dimen>
+    <dimen name="default_circle_indicator_stroke_width">1dp</dimen>
+    <dimen name="default_indicators_bottom_margin">24dp</dimen>
+    <dimen name="default_indicators_left_margin">0dp</dimen>
+    <dimen name="default_indicators_right_margin">0dp</dimen>
+    <dimen name="default_indicators_top_margin">0dp</dimen>
+    <dimen name="description_horizontal_padding">4dp</dimen>
+    <integer name="default_circle_indicator_orientation">0</integer>
+    <string name="image_content_description">Sliding image</string>
+    <declare-styleable name="CirclePageIndicator">
+    <!-- Whether or not the indicators should be centered. -->
+    <attr format="boolean" name="centered"/>
+    <!-- Color of the filled circle that represents the current page. -->
+    <attr format="color" name="fillColor"/>
+    <!-- Color of the filled circles that represents pages. -->
+    <attr format="color" name="pageColor"/>
+    <!-- Orientation of the indicator. -->
+    <attr name="android:orientation"/>
+    <!-- Radius of the circles. This is also the spacing between circles. -->
+    <attr format="dimension" name="radius"/>
+    <!-- Whether or not the selected indicator snaps to the circles. -->
+    <attr format="boolean" name="snap"/>
+    <!-- Color of the open circles. -->
+    <attr format="color" name="strokeColor"/>
+    <!-- Width of the stroke used to draw the circles. -->
+    <attr name="strokeWidth"/>
+    <!-- View background -->
+    <attr name="android:background"/>
+  </declare-styleable>
+    <declare-styleable name="ImageSlider">
+    <!-- Determines whether or not the ImageSlider should recover after user touch event. -->
+    <attr format="boolean" name="autoRecoverAfterTouchEvent"/>
+    <!-- Determines whether or not the ImageSlider should immediately starts its transitions. -->
+    <attr format="boolean" name="initWithAutoCycling"/>
+    <!-- Reference to a background to be applied to Slider's indicator. -->
+    <attr format="reference" name="indicatorBackground"/>
+    <!-- Delay in milliseconds before the first slide change. -->
+    <attr format="integer" name="initialSlideDelay"/>
+    <!-- Reference to a background to be applied to Slider. -->
+    <attr format="reference" name="sliderBackground"/>
+    <!-- Time in milliseconds between successive slide changes. -->
+    <attr format="integer" name="slideTransitionInterval"/>
+    <!-- Color of the filled circle that represents the current page. -->
+    <attr format="color" name="indicatorFillColor"/>
+    <!-- Color of the filled circles that represents pages. -->
+    <attr format="color" name="indicatorPageColor"/>
+    <!-- Radius of the circles. This is also the spacing between circles. -->
+    <attr format="dimension" name="indicatorRadius"/>
+    <!-- Whether or not the selected indicator snaps to the circles. -->
+    <attr format="boolean" name="indicatorSnap"/>
+    <!-- Color of the open circles. -->
+    <attr format="color" name="indicatorStrokeColor"/>
+    <!-- Width of the stroke used to draw the circles. -->
+    <attr format="dimension" name="indicatorStrokeWidth"/>
+    <!-- Indicators left margin size. -->
+    <attr format="dimension" name="indicatorsLeftMargin"/>
+    <!-- Indicators top margin size. -->
+    <attr format="dimension" name="indicatorsTopMargin"/>
+    <!-- Indicators right margin size. -->
+    <attr format="dimension" name="indicatorsRightMargin"/>
+    <!-- Indicators bottom margin size. -->
+    <attr format="dimension" name="indicatorsBottomMargin"/>
+  </declare-styleable>
+</resources>
