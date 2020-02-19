@@ -55,9 +55,11 @@ You can take a look at the `PicassoImageLoaderFactory` implementation below.
 ```kotlin
 class PicassoImageLoader(
   @DrawableRes private val errorResId: Int,
-  @DrawableRes private val placeholderResId: Int
-) : ImageLoader {
+  @DrawableRes private val placeholderResId: Int,
+  eventListener: EventListener? = null
+) : ImageLoader(eventListener) {
 
+  /** Loads an image into the given [imageView] using the specified [path]. */
   override fun load(path: String, imageView: ImageView) {
     Picasso.get().load(path).apply {
       if (placeholderResId > 0) {
@@ -77,10 +79,11 @@ class PicassoImageLoader(
 ```kotlin
 class PicassoImageLoaderFactory(
   @DrawableRes private val errorResId: Int = 0,
-  @DrawableRes private val placeholderResId: Int = 0
-) : ImageLoader.Factory<PicassoImageLoader>() {
+  @DrawableRes private val placeholderResId: Int = 0,
+  private val eventListener: ImageLoader.EventListener? = null
+) : ImageLoader.Factory<PicassoImageLoader> {
 
-  override fun create(): PicassoImageLoader = PicassoImageLoader(errorResId, placeholderResId)
+  override fun create(): PicassoImageLoader = PicassoImageLoader(errorResId, placeholderResId, eventListener)
 }
 ```
 
