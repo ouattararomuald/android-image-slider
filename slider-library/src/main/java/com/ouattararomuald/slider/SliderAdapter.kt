@@ -10,6 +10,7 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isVisible
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import java.util.*
 
 /**
  * Adapter to create a slider.
@@ -20,19 +21,25 @@ import androidx.viewpager.widget.ViewPager
  * @property imageLoaderFactory image loader factory.
  * @property imageUrls urls of images to display.
  * @property descriptions images descriptions.
+ * @property id ID of the slider.
+ * @param sliderId ID of the slider.
  */
 class SliderAdapter(
   private val context: Context,
   private val imageLoaderFactory: ImageLoader.Factory<*>,
   val imageUrls: List<String>,
-  val descriptions: List<String> = emptyList()
+  val descriptions: List<String> = emptyList(),
+  sliderId: String? = null
 ) : PagerAdapter() {
 
+  val id: String = sliderId ?: UUID.randomUUID().toString()
   private val imageLoader: ImageLoader
 
   private lateinit var slideImageView: ImageView
   private lateinit var descriptionLayout: LinearLayout
   private lateinit var descriptionTextView: AppCompatTextView
+
+  private var imageClickListener: ImageViewClickListener? = null
 
   init {
     if (imageUrls.isEmpty()) {
@@ -66,6 +73,7 @@ class SliderAdapter(
       descriptionTextView = findViewById(R.id.description_textview)
     }
 
+    slideImageView.setOnClickListener { imageClickListener?.onItemClicked(id, position, imageUrls[position]) }
     imageLoader.configureImageView(slideImageView)
     imageLoader.load(imageUrls[position], slideImageView)
 
@@ -85,5 +93,20 @@ class SliderAdapter(
     val viewPager = container as ViewPager
     val view = obj as View
     viewPager.removeView(view)
+  }
+
+  fun setImageClickListener(listener: ImageViewClickListener?) {
+    imageClickListener = listener
+  }
+
+  interface ImageViewClickListener {
+    /**
+     * Invoked after a click on an item in the slider
+     *
+     * @param sliderId ID of the slider.
+     * @param position position of item that was clicked.
+     * @param imageUrl url of the image<x.
+     */
+    fun onItemClicked(sliderId: String, position: Int, imageUrl: String)
   }
 }

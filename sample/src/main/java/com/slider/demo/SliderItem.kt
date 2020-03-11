@@ -1,6 +1,7 @@
 package com.slider.demo
 
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.viewpager.widget.ViewPager
 import coil.size.OriginalSize
 import coil.size.Scale
@@ -40,6 +41,11 @@ internal class SliderItem(
         imageUrls = imageUrls.toList(),
         descriptions = Data.generateDescriptions(imageLoaderType.name, imageUrls.size)
     )
+    (viewHolder.slider.adapter as SliderAdapter).setImageClickListener(object : SliderAdapter.ImageViewClickListener {
+      override fun onItemClicked(sliderId: String, position: Int, imageUrl: String) {
+        Toast.makeText(viewHolder.containerView.context, "ID: $sliderId, Position: $position, Image URL: $imageUrl", Toast.LENGTH_LONG).show()
+      }
+    })
     viewHolder.slider.pageTransformer = pageTransformer
   }
 
