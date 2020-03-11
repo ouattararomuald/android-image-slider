@@ -43,7 +43,9 @@ internal class SliderItem(
     )
     (viewHolder.slider.adapter as SliderAdapter).setImageClickListener(object : SliderAdapter.ImageViewClickListener {
       override fun onItemClicked(sliderId: String, position: Int, imageUrl: String) {
-        Toast.makeText(viewHolder.containerView.context, "ID: $sliderId, Position: $position, Image URL: $imageUrl", Toast.LENGTH_LONG).show()
+        Toast.makeText(viewHolder.containerView.context,
+                "ID: $sliderId, Position: $position, Image URL: $imageUrl", Toast.LENGTH_LONG)
+                .show()
       }
     })
     viewHolder.slider.pageTransformer = pageTransformer
