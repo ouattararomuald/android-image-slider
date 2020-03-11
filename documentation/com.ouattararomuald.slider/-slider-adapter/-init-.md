@@ -6,7 +6,7 @@ title: SliderAdapter.<init> -
 
 # &lt;init&gt;
 
-`SliderAdapter(context: `[`Context`](https://developer.android.com/reference/android/content/Context.html)`, imageLoaderFactory: `[`ImageLoader.Factory`](../-image-loader/-factory/index.html)`<*>, imageUrls: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>, descriptions: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`> = emptyList())`
+`SliderAdapter(context: `[`Context`](https://developer.android.com/reference/android/content/Context.html)`, imageLoaderFactory: `[`ImageLoader.Factory`](../-image-loader/-factory/index.html)`<*>, imageUrls: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`>, descriptions: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`> = emptyList(), sliderId: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`? = null)`
 
 Adapter to create a slider.
 
