@@ -3,6 +3,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [3.0.1] - 2020-11-03
+
+- Add ID to `SliderAdapter`.
+- Allow consumers to listen click on ImageView.
+
 ## [3.0.0] - 2020-18-02
 
 - New loader: [Coil](https://github.com/coil-kt/coil).
